@@ -3,11 +3,13 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./theme.js";
+import theme from "../src/styles/theme";
+import { CssBaseline } from "@mui/material";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<ThemeProvider theme={theme}>
+		<CssBaseline /> {/* 기본 CSS 초기화 */}
 		<App />
 	</ThemeProvider>
 );

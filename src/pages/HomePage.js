@@ -4,6 +4,8 @@ function HomePage() {
 	return (
 		<div>
 			<h1>Home Page</h1>
+			<h2>Movie List</h2>
+
 			<nav>
 				<ul>
 					<li>
@@ -11,6 +13,9 @@ function HomePage() {
 					</li>
 					<li>
 						<Link to="/mypage">Go to My Page</Link>
+					</li>
+					<li>
+						<Link to="/style-guide">StyleGuidePage</Link>
 					</li>
 				</ul>
 			</nav>
