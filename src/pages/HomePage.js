@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovies } from "../api/tmdbApi";
+import { fetchMovies } from "../api/tmdbApi.js";
 
 function HomePage() {
   const [loading, setLoading] = useState(true);
