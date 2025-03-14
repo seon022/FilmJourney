@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 function ReviewForm() {
 	const { id } = useParams();
-	const [movieId, setMovieId] = useState(id);
 	const [movieTitle, setMovieTitle] = useState("");
 	const [reviewText, setReviewText] = useState("");
 	const [rating, setRating] = useState(5);
@@ -13,7 +12,7 @@ function ReviewForm() {
 		e.preventDefault();
 
 		const userId = "7M03tdkoD19ICcaH0Jwv";
-		const movieData = { id: movieId, title: movieTitle, poster_path: "" };
+		const movieData = { id, title: movieTitle, poster_path: "" };
 
 		try {
 			console.log("click save button");
@@ -28,8 +27,7 @@ function ReviewForm() {
 			<h2>My review</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
-					<label>Movie Id : </label>
-					<input type="text" value={movieId} />
+					<label>Movie Id : {id} </label>
 				</div>
 				<div>
 					<label>Movie Title : </label>
