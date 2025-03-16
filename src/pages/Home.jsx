@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovies } from "../api/tmdbApi.js";
+import { fetchMovieList } from "../api/tmdbApi.js";
+import MovieCard from "../components/MovieCard.jsx";
+import { Movie } from "@mui/icons-material";
 
-function HomePage() {
+function Home() {
   const [loading, setLoading] = useState(true);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [topRated, setTopRated] = useState([]);
@@ -12,9 +14,9 @@ function HomePage() {
 
     // fetching an API - Process simultaneously using Promise.all
     const [nowPlayingRes, topRatedRes, upcomingRes] = await Promise.all([
-      fetchMovies("now_playing"),
-      fetchMovies("top_rated"),
-      fetchMovies("upcoming"),
+      fetchMovieList("now_playing"),
+      fetchMovieList("top_rated"),
+      fetchMovieList("upcoming"),
     ]);
 
     setNowPlaying(nowPlayingRes);
@@ -36,14 +38,13 @@ function HomePage() {
             <h2>Now Playing</h2>
             <div style={{ display: "flex", gap: "1rem" }}>
               {nowPlaying.map((movie) => (
-                <div key={movie.id}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <p>{movie.title}</p>
-                  <p>avg: {movie.vote_average.toFixed(1)}</p>
-                </div>
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  poster={movie.poster_path}
+                  title={movie.title}
+                  aveRate={movie.vote_average.toFixed(1)}
+                />
               ))}
             </div>
           </section>
@@ -51,14 +52,13 @@ function HomePage() {
             <h2>Top Rated</h2>
             <div style={{ display: "flex", gap: "1rem" }}>
               {topRated.map((movie) => (
-                <div key={movie.id}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <p>{movie.title}</p>
-                  <p>avg: {movie.vote_average.toFixed(1)}</p>
-                </div>
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  poster={movie.poster_path}
+                  title={movie.title}
+                  aveRate={movie.vote_average.toFixed(1)}
+                />
               ))}
             </div>
           </section>
@@ -66,14 +66,13 @@ function HomePage() {
             <h2>Upcoming</h2>
             <div style={{ display: "flex", gap: "1rem" }}>
               {upcoming.map((movie) => (
-                <div key={movie.id}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <p>{movie.title}</p>
-                  <p>avg: {movie.vote_average.toFixed(1)}</p>
-                </div>
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  poster={movie.poster_path}
+                  title={movie.title}
+                  aveRate={movie.vote_average.toFixed(1)}
+                />
               ))}
             </div>
           </section>
@@ -96,4 +95,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Home;

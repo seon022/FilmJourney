@@ -1,29 +1,24 @@
-import React from "react";
-import { Card, CardContent, Typography, Button } from "@mui/material";
+import propTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const movie = {
-	title: "micky17",
-	poster_path: "urlurl",
-	overview:
-		"A brief description of another movie. You can leave a review here too.",
-};
-const MovieCard = () => {
-	return (
-		<Card sx={{ maxWidth: 345 }}>
-			<img src={movie.poster_path} alt={movie.title} width="100%" />
-			<CardContent>
-				<Typography variant="h5" component="div">
-					{movie.title}
-				</Typography>
-				<Typography variant="body2" color="text.secondary">
-					{movie.overview}
-				</Typography>
-				<Button variant="contained" color="primary">
-					View Details
-				</Button>
-			</CardContent>
-		</Card>
-	);
+function MovieCard({ id, poster, title, aveRate }) {
+  //movie component is receiving props from the parent component
+  return (
+    <div>
+      <img src={`https://image.tmdb.org/t/p/w200${poster}`} alt={title} />
+      <p>
+        <Link to={`/movie/${id}`}>{title}</Link>
+      </p>
+      <p>avg: {aveRate}</p>
+    </div>
+  );
+}
+
+MovieCard.propTypes = {
+  id: propTypes.number.isRequired,
+  poster: propTypes.string.isRequired,
+  title: propTypes.string.isRequired,
+  aveRate: propTypes.number.isRequired,
 };
 
 export default MovieCard;
