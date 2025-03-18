@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addReview } from "../api/reviewService";
 import { useParams } from "react-router-dom";
+import BackHeader from "../components/BackHeader";
 import Rating from "@mui/material/Rating";
 
 function ReviewForm() {
@@ -25,6 +26,7 @@ function ReviewForm() {
 
 	return (
 		<div>
+			<BackHeader />
 			<h2>My review</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
