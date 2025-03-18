@@ -9,17 +9,37 @@ const theme = createTheme({
 			light: "#BBA88D",
 			contrastText: "#FFFFFF",
 		},
-		background: {
-			default: blue[50],
-		},
-		text: {
-			primary: brown[500],
-		},
+		background: {},
+		text: {},
 	},
 	typography: {
 		fontFamily: '"Pretendard", sans-serif',
 	},
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 600,
+			md: 960,
+			lg: 1280,
+			xl: 1920,
+		},
+	},
 	components: {
+		MuiContainer: {
+			styleOverrides: {
+				root: {
+					minWidth: "320px",
+					maxWidth: "600px",
+					width: "50%",
+					margin: "0 auto",
+					minHeight: "100vh",
+					backgroundColor: blue[50],
+					color: brown[500],
+					padding: "16px",
+					overflow: "hidden",
+				},
+			},
+		},
 		MuiButton: {
 			defaultProps: {
 				variant: "contained",

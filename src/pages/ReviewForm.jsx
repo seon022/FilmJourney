@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addReview } from "../api/reviewService";
 import { useParams } from "react-router-dom";
+import Rating from "@mui/material/Rating";
 
 function ReviewForm() {
 	const { id } = useParams();
@@ -40,13 +41,15 @@ function ReviewForm() {
 
 				<div>
 					<label>rating :</label>
-					<input
-						type="number"
+					<Rating
+						name="simple-controlled"
 						value={rating}
-						onChange={(e) => setRating(Number(e.target.value))}
-						min="1"
-						max="10"
-						required
+						precision={0.5}
+						onChange={(event, newValue) => {
+							setRating(newValue);
+
+							console.log(newValue);
+						}}
 					/>
 				</div>
 				<div>
