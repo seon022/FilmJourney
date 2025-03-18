@@ -26,12 +26,8 @@ function ReviewForm() {
 
 	return (
 		<div>
-			<BackHeader />
-			<h2>My review</h2>
+			<BackHeader text="My Review" />
 			<form onSubmit={handleSubmit}>
-				<div>
-					<label>Movie Id : {id} </label>
-				</div>
 				<div>
 					<label>Movie Title : </label>
 					<input

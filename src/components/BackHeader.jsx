@@ -1,9 +1,11 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const BackHeader = () => {
-	const iconSize = 24;
+const BackHeader = ({ text }) => {
+	const navigate = useNavigate();
+	const iconSize = 30;
 	return (
 		<Box
 			component="header"
@@ -12,12 +14,15 @@ const BackHeader = () => {
 				alignItems: "center",
 				justifyContent: "space-between",
 				position: "relative",
-				padding: "0",
-				height: "40px",
+				height: "50px",
+				marginBottom: "20px",
 			}}
 		>
-			<Box>
-				<ArrowBackIcon sx={{ fontSize: iconSize }} />
+			<Box
+				onClick={() => navigate(-1)}
+				sx={{ cursor: "pointer", width: `${iconSize}px` }}
+			>
+				<ArrowBackIcon />
 			</Box>
 
 			<Box
@@ -27,7 +32,7 @@ const BackHeader = () => {
 					transform: "translateX(-50%)",
 				}}
 			>
-				Film Journey
+				{text}
 			</Box>
 
 			<Box sx={{ width: `${iconSize}px` }} />
