@@ -2,6 +2,9 @@ import { createTheme } from "@mui/material/styles";
 import { blue, blueGrey, brown } from "@mui/material/colors";
 
 const theme = createTheme({
+	typography: {
+		fontFamily: '"Pretendard", sans-serif',
+	},
 	palette: {
 		primary: { main: brown[500] },
 		secondary: {
@@ -11,9 +14,6 @@ const theme = createTheme({
 		},
 		background: {},
 		text: {},
-	},
-	typography: {
-		fontFamily: '"Pretendard", sans-serif',
 	},
 	breakpoints: {
 		values: {
@@ -25,21 +25,6 @@ const theme = createTheme({
 		},
 	},
 	components: {
-		MuiContainer: {
-			styleOverrides: {
-				root: {
-					minWidth: "320px",
-					maxWidth: "600px",
-					width: "50%",
-					margin: "0 auto",
-					minHeight: "100vh",
-					backgroundColor: blue[50],
-					color: brown[500],
-					padding: "16px",
-					overflow: "hidden",
-				},
-			},
-		},
 		MuiButton: {
 			defaultProps: {
 				variant: "contained",
@@ -57,6 +42,24 @@ const theme = createTheme({
 					borderRadius: 10,
 					boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
 				},
+			},
+		},
+		MuiContainer: {
+			styleOverrides: {
+				root: ({ theme }) => ({
+					minWidth: "320px",
+					maxWidth: "600px",
+					width: "50%",
+					minHeight: "100vh",
+					margin: "0 auto",
+					padding: "16px",
+					backgroundColor: blue[50],
+					color: brown[500],
+					overflow: "hidden",
+					[theme.breakpoints.down("lg")]: {
+						width: "100%", // 화면 너비가 1280px 이하일 때 100% 적용
+					},
+				}),
 			},
 		},
 	},
