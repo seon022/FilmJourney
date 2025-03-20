@@ -1,0 +1,88 @@
+.genre-filter {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  &.css-1qb8o-MuiToggleButtonGroup-root {
+    display: flex;
+
+    .MuiToggleButtonGroup-lastButton,
+    .MuiToggleButtonGroup-middleButton {
+      border-left: 1px solid #8a7163;
+      border-top-left-radius: 25px;
+    }
+    .MuiToggleButtonGroup-firstButton,
+    .MuiToggleButtonGroup-middleButton {
+      border-top-right-radius: 25px;
+    }
+    .MuiToggleButtonGroup-lastButton,
+    .MuiToggleButtonGroup-middleButton {
+      border-bottom-left-radius: 25px;
+    }
+    .MuiToggleButtonGroup-firstButton,
+    .MuiToggleButtonGroup-middleButton {
+      border-bottom-right-radius: 25px;
+    }
+  }
+  button {
+    &:focus,
+    &:focus-visible {
+      outline: none;
+    }
+  }
+  .css-6i8jhd-MuiButtonBase-root-MuiToggleButton-root.Mui-selected {
+    background-color: #8a7163 !important;
+    color: #fff !important;
+  }
+  .MuiButtonBase-root {
+    color: #8a7163;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1px solid #8a7163;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding: 0 1rem;
+    margin-left: 0 !important;
+  }
+}
+.movie-set {
+  .set-list {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    .movie-card {
+      width: 15rem;
+      color: #8a7163;
+      &:focus {
+        .title {
+          text-decoration: underline;
+          text-underline-offset: 4px;
+        }
+      }
+      .poster {
+        width: 100%;
+        min-width: 15rem;
+        min-height: 22.5rem;
+        background-color: #8a7163;
+      }
+      .title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        width: 100%;
+        margin: 1rem 0 0;
+        padding-bottom: 1rem;
+      }
+      .aveRate {
+        font-size: 1.4rem;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 function MovieCard({ id, poster, title, aveRate }) {
   //movie component is receiving props from the parent component
   return (
-    <div>
-      <img src={`https://image.tmdb.org/t/p/w200${poster}`} alt={title} />
-      <p>
-        <Link to={`/movie/${id}`}>{title}</Link>
-      </p>
-      <p>avg: {aveRate}</p>
-    </div>
+    <Link to={`/movie/${id}`} className="movie-card">
+      <div>
+        <img
+          src={`https://image.tmdb.org/t/p/w200${poster}`}
+          alt={title}
+          className="poster"
+        />
+        <p className="title">{title}</p>
+        <p className="aveRate">avg: {aveRate}</p>
+      </div>
+    </Link>
   );
 }
 
