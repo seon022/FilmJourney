@@ -5,8 +5,13 @@ import {
 	serverTimestamp,
 	getDocs,
 } from "firebase/firestore";
-
-export const addReview = async (userId, movieData, rating, reviewText) => {
+export const addReview = async (
+	userId,
+	movieData,
+	rating,
+	reviewText,
+	watchedDate
+) => {
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
 		await addDoc(reviewRef, {
@@ -14,16 +19,16 @@ export const addReview = async (userId, movieData, rating, reviewText) => {
 			movieTitle: movieData.title,
 			moviePoster: movieData.poster_path || "",
 			reviewDate: new Date().toISOString().split("T")[0],
+			watchedDate: watchedDate || null,
 			rating,
 			reviewText,
 			createdAt: serverTimestamp(),
 		});
-		console.log("succeessfully saved!");
+		console.log("Successfully saved!");
 	} catch (error) {
-		console.error("error in review save:", error);
+		console.error("Error in review save:", error);
 	}
 };
-
 export const getReviews = async (userId) => {
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
