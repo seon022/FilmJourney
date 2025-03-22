@@ -1,12 +1,17 @@
 import { createTheme } from "@mui/material/styles";
 import { blue, blueGrey, brown } from "@mui/material/colors";
 
+const NAVIGATION_HEIGHT = 70;
+
 const theme = createTheme({
 	typography: {
 		fontFamily: '"Pretendard", sans-serif',
 	},
 	palette: {
-		primary: { main: brown[500] },
+		primary: {
+			main: brown[500],
+			light: brown[300],
+		},
 		secondary: {
 			main: blueGrey[400],
 			light: "#BBA88D",
@@ -47,17 +52,19 @@ const theme = createTheme({
 		MuiContainer: {
 			styleOverrides: {
 				root: ({ theme }) => ({
+					position: "relative",
 					minWidth: "320px",
 					maxWidth: "600px",
 					width: "50%",
-					minHeight: "100vh",
+					minHeight: `calc(100vh - ${NAVIGATION_HEIGHT}px)`,
 					margin: "0 auto",
 					padding: "16px",
+					paddingBottom: `${NAVIGATION_HEIGHT}px`,
 					backgroundColor: blue[50],
 					color: brown[500],
 					overflow: "hidden",
 					[theme.breakpoints.down("lg")]: {
-						width: "100%", // 화면 너비가 1280px 이하일 때 100% 적용
+						width: "100%",
 					},
 				}),
 			},
