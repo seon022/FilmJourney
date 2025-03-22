@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles";
-import { blue, blueGrey, brown } from "@mui/material/colors";
-
-const NAVIGATION_HEIGHT = 70;
+import { blue, blueGrey, brown, yellow } from "@mui/material/colors";
+import { light } from "@mui/material/styles/createPalette";
 
 const theme = createTheme({
   typography: {
@@ -17,8 +16,10 @@ const theme = createTheme({
       light: "#BBA88D",
       contrastText: "#FFFFFF",
     },
-    background: {},
-    text: {},
+    rating: {
+      main: yellow[700],
+      light: yellow[300],
+    },
   },
   breakpoints: {
     values: {
@@ -49,37 +50,15 @@ const theme = createTheme({
         },
       },
     },
-    MuiContainer: {
-      styleOverrides: {
-        root: ({ theme }) => ({
-          position: "relative",
-          minWidth: "320px",
-          maxWidth: "600px",
-          width: "50%",
-          minHeight: `calc(100vh - ${NAVIGATION_HEIGHT}px)`,
-          margin: "0 auto",
-          padding: "16px",
-          paddingBottom: `${NAVIGATION_HEIGHT}px`,
-          backgroundColor: blue[50],
-          color: brown[500],
-          overflow: "hidden",
-          [theme.breakpoints.down("lg")]: {
-            width: "100%",
-          },
-        }),
-      },
-    },
+
     MuiCssBaseline: {
       styleOverrides: {
         "*": { lineHeight: 1.2 },
+        a: { textDecoration: "none" },
         "#root": {
-          maxWidth: "760px",
-          minWidth: "320px",
-          width: "100%",
-          textAlign: "left",
+          position: "relative",
           overflowX: "hidden",
-          margin: "2rem auto",
-          padding: "0",
+          color: brown[500],
         },
       },
     },

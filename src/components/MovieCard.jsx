@@ -1,5 +1,7 @@
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Rating } from "@mui/material";
+import StarRateIcon from "@mui/icons-material/StarRate";
 
 function MovieCard({ id, poster, title, aveRate }) {
   //movie component is receiving props from the parent component
@@ -12,7 +14,10 @@ function MovieCard({ id, poster, title, aveRate }) {
           className="poster"
         />
         <p className="title">{title}</p>
-        <p className="aveRate">avg: {aveRate}</p>
+        <div className="aveRate">
+          <StarRateIcon fontSize="small" color="rating"></StarRateIcon>
+          <p>{aveRate}</p>
+        </div>
       </div>
     </Link>
   );

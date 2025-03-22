@@ -10,17 +10,15 @@ import ReviewForm from "./pages/ReviewForm";
 function App() {
   return (
     <Router>
-      <Container>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movie/:id" element={<MovieDetail />} />
-          <Route path="/movie/:id/review" element={<ReviewForm />} />
-          <Route path="/search" element={<MyPage />} />
-          <Route path="/favorites" element={<MyPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-        </Routes>
-        <Navigation />
-      </Container>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/movie/:id/review" element={<ReviewForm />} />
+        <Route path="/search" element={<MyPage />} />
+        <Route path="/favorites" element={<MyPage />} />
+        <Route path="/mypage" element={<MyPage />} />
+      </Routes>
+      <Navigation />
     </Router>
   );
 }
