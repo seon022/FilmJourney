@@ -1,30 +1,27 @@
+import { Container } from "@mui/material";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import MyPage from "./pages/MyPage";
 import ReviewForm from "./pages/ReviewForm";
-import StyleGuidePage from "./pages/StyleGuidePage";
-import theme from "./styles/theme";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import "./App.css";
 
 function App() {
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/movie/:id" element={<MovieDetail />} />
-            <Route path="/movie/:id/review" element={<ReviewForm />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/style-guide" element={<StyleGuidePage />} />
-          </Routes>
-        </Router>
-      </ThemeProvider>
-    </>
+    <Router>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movie/:id" element={<MovieDetail />} />
+          <Route path="/movie/:id/review" element={<ReviewForm />} />
+          <Route path="/search" element={<MyPage />} />
+          <Route path="/favorites" element={<MyPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+        </Routes>
+        <Navigation />
+      </Container>
+    </Router>
   );
 }
 
