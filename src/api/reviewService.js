@@ -4,7 +4,10 @@ import {
 	addDoc,
 	serverTimestamp,
 	getDocs,
+	doc,
+	deleteDoc,
 } from "firebase/firestore";
+
 export const addReview = async (
 	userId,
 	movieData,
@@ -29,6 +32,7 @@ export const addReview = async (
 		console.error("Error in review save:", error);
 	}
 };
+
 export const getReviews = async (userId) => {
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
@@ -41,5 +45,15 @@ export const getReviews = async (userId) => {
 	} catch (error) {
 		console.error("error in getting reviews", error);
 		return [];
+	}
+};
+
+export const deleteReviewFromFirebase = async (userId, reviewId) => {
+	try {
+		const reviewDoc = doc(db, "users", userId, "reviews", reviewId);
+		await deleteDoc(reviewDoc);
+		console.log("Review deleted successfully");
+	} catch (error) {
+		console.error("Error deleting review:", error);
 	}
 };
