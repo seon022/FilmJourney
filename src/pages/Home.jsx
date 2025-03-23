@@ -60,11 +60,11 @@ function Home() {
   }, []);
 
   return (
-    <div className="cont-wrapper">
+    <div>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div>
+        <div className="cont-wrapper">
           <ToggleButtonGroup
             color="primary"
             value={selectedGenre}

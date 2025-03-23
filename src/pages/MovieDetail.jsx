@@ -62,7 +62,7 @@ function MovieDetail() {
             <p>overview : {detail.overview}</p>
             <ul>
               <li>Cast :</li>
-              {cast.cast.map((c) => (
+              {cast.cast.slice(0, 5).map((c) => (
                 <li key={c.id}>{c.name}</li>
               ))}
             </ul>

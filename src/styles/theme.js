@@ -1,8 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import { blue, blueGrey, brown, yellow } from "@mui/material/colors";
-import { light } from "@mui/material/styles/createPalette";
-import { display } from "@mui/system";
 
+const NAVIGATION_HEIGHT = 70;
 const theme = createTheme({
   typography: {
     fontFamily: '"Pretendard", sans-serif',
@@ -56,7 +55,14 @@ const theme = createTheme({
       styleOverrides: {
         "*": { lineHeight: 1.2 },
         "#root": {
+          backgroundColor: blue[50],
           color: brown[500],
+          minWidth: "320px",
+          maxWidth: "760px",
+          width: "100%",
+          minHeight: `calc(100svh - ${NAVIGATION_HEIGHT}px)`,
+          paddingBottom: `calc(20px + ${NAVIGATION_HEIGHT}px)`,
+          margin: "0 auto",
         },
         a: { textDecoration: "none" },
         img: { display: "block" },
