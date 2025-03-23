@@ -22,3 +22,17 @@ export const fetchMovieDetail = async (id) => {
   ).json();
   return json;
 };
+
+export const fetchCast = async (id) => {
+  const json = await (
+    await fetch(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`)
+  ).json();
+  return json;
+};
+
+export const fetchSimilarMovies = async (id) => {
+  const json = await (
+    await fetch(`${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}`)
+  ).json();
+  return json.results;
+};

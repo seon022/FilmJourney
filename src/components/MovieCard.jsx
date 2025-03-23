@@ -1,6 +1,5 @@
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Rating } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
 
 function MovieCard({ id, poster, title, aveRate }) {

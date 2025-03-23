@@ -101,3 +101,33 @@
     }
   }
 }
+.detail-container {
+  .detail-card {
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px 20px;
+  }
+  .movie-img {
+    width: 100%;
+    max-height: 250px;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: top;
+  }
+  .movie-info {
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0;
+    }
+  }
+}
+.write-review-btn.css-1rhg1k5-MuiButtonBase-root-MuiButton-root {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  min-width: unset;
+  border-radius: 50%;
+}

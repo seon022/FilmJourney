@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react"; // useMemo를 사용해서 불필요한 계산을 줄이고 상태 변경을 반영
 import { fetchMovieList, fetchGenres } from "../api/tmdbApi.js";
 import MovieCard from "../components/MovieCard.jsx";
-import { Movie } from "@mui/icons-material";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 function Home() {

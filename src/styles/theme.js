@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import { blue, blueGrey, brown, yellow } from "@mui/material/colors";
 import { light } from "@mui/material/styles/createPalette";
+import { display } from "@mui/system";
 
 const theme = createTheme({
   typography: {
@@ -54,12 +55,13 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         "*": { lineHeight: 1.2 },
-        a: { textDecoration: "none" },
         "#root": {
-          position: "relative",
-          overflowX: "hidden",
           color: brown[500],
         },
+        a: { textDecoration: "none" },
+        img: { display: "block" },
+        ul: { padding: 0 },
+        li: { listStyle: "none" },
       },
     },
   },
