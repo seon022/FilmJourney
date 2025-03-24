@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { Container } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
-import { addReview, updateReview } from "../api/reviewService";
-import BackHeader from "../components/BackHeader";
-import DateInput from "../components/review/DateInput";
-import RatingInput from "../components/review/RatingInput";
-import ReviewInput from "../components/review/ReviewInput";
-import useMovieStore from "../store/movieStore";
-import useUserStore from "../store/userStore";
+import { addReview, updateReview } from "@api/reviewService";
+import BackHeader from "@components/BackHeader";
+import DateInput from "@components/review/DateInput";
+import RatingInput from "@components/review/RatingInput";
+import ReviewInput from "@components/review/ReviewInput";
+import { useMovieStore } from "@store/movieStore";
+import { useUserStore } from "@store/userStore";
 
 function ReviewForm() {
 	const navigate = useNavigate();

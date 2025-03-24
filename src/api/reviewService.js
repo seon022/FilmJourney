@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../firebase";
-import useUserStore from "../store/userStore";
+import { useUserStore } from "@store/userStore";
 
 const { user } = useUserStore.getState();
 const userId = user.userId;

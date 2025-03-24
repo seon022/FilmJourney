@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import Button from "@mui/material/Button";
+import Fab from "@mui/material/Fab";
 import { useParams, useNavigate } from "react-router-dom";
-import useMovieStore from "../store/movieStore";
 
 import {
 	fetchMovieDetail,
@@ -12,6 +11,7 @@ import {
 	fetchSimilarMovies,
 } from "../api/tmdbApi.js";
 import MovieCard from "../components/MovieCard";
+import useMovieStore from "../store/movieStore";
 
 function MovieDetail() {
 	const [loading, setLoading] = useState(true);
@@ -19,12 +19,23 @@ function MovieDetail() {
 	const [cast, setCast] = useState([]);
 	const [similar, setSimilar] = useState([]);
 	const { id } = useParams();
-	const navigate = useNavigate(); // 페이지 이동을 위한 navigate 함수
+	const navigate = useNavigate();
 	const setMovie = useMovieStore((state) => state.setMovie);
+	const setEditReview = useMovieStore((state) => state.setEditReview);
 
 	const handleGoToReviewForm = () => {
 		setMovie(detail);
-		// ReviewForm 페이지로 이동 (영화 ID를 URL 파라미터로 넘길 수 있음음)
+
+		const existingReview = useMovieStore
+			.getState()
+			.reviews.find((review) => review.movieId === detail.id);
+
+		if (existingReview) {
+			setEditReview(existingReview);
+		} else {
+			setEditReview(null);
+		}
+
 		navigate(`/review/${id}`);
 	};
 	const getDetail = async () => {
@@ -99,13 +110,19 @@ function MovieDetail() {
 							</div>
 						</section>
 					</div>
-					<Button
-						variant="contained"
+					<Fab
+						color="primary"
+						aria-label="add"
+						sx={{
+							position: "fixed",
+							bottom: 90,
+							right: "max(calc((100vw - 760px) / 2 + 20px), 20px)",
+							zIndex: 1000,
+						}}
 						onClick={handleGoToReviewForm}
-						className="write-review-btn"
 					>
-						<AddIcon></AddIcon>
-					</Button>
+						<AddIcon />
+					</Fab>
 				</div>
 			)}
 		</div>

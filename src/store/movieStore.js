@@ -1,6 +1,6 @@
 import { create } from "zustand";
-
 import { persist, devtools } from "zustand/middleware";
+
 import { getReviews, deleteReviewFromFirebase } from "../api/reviewService";
 
 export const useMovieStore = create(

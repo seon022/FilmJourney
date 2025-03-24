@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -9,7 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
-import { useNavigate } from "react-router-dom";
+import { useLocation , useNavigate } from "react-router-dom";
 
 const SMALL_SIZE = 20;
 const LARGE_SIZE = 28;

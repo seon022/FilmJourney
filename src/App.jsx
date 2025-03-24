@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
-import MovieDetail from "./pages/MovieDetail";
-import MyPage from "./pages/MyPage";
-import ReviewForm from "./pages/ReviewForm";
-import ReviewPage from "./pages/ReviewPage";
+import Home from "@pages/Home";
+import MovieDetail from "@pages/MovieDetail";
+import ReviewForm from "@pages/ReviewForm";
+import MyPage from "@pages/MyPage";
+import ReviewPage from "@pages/ReviewPage";
+import Navigation from "@components/Navigation";
 
 function App() {
 	return (

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, devtools } from "zustand/middleware";
 
-const useUserStore = create(
+export const useUserStore = create(
 	persist(
 		devtools((set) => ({
 			user: { userId: "7M03tdkoD19ICcaH0Jwv", email: "" },
@@ -12,5 +12,3 @@ const useUserStore = create(
 		}))
 	)
 );
-
-export default useUserStore;
