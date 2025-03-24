@@ -9,14 +9,14 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../firebase";
+import useUserStore from "../store/userStore";
 
-export const addReview = async (
-	userId,
-	movieData,
-	rating,
-	reviewText,
-	watchedDate
-) => {
+const { user } = useUserStore.getState();
+const userId = user.userId;
+
+export const addReview = async (movieData, rating, reviewText, watchedDate) => {
+	if (!userId) throw new Error("User is not logged in.");
+
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
 		await addDoc(reviewRef, {
@@ -29,20 +29,27 @@ export const addReview = async (
 			reviewText,
 			createdAt: serverTimestamp(),
 		});
-		console.log("Successfully saved!");
+		console.log(
+			"Successfully saved!",
+			movieData,
+			rating,
+			reviewText,
+			watchedDate
+		);
 	} catch (error) {
 		console.error("Error in review save:", error);
 	}
 };
 
 export const updateReview = async (
-	userId,
 	reviewId,
 	movieData,
 	rating,
 	reviewText,
 	watchedDate
 ) => {
+	if (!userId) throw new Error("User is not logged in.");
+
 	try {
 		const reviewDocRef = doc(db, "users", userId, "reviews", reviewId);
 		await updateDoc(reviewDocRef, {
@@ -60,7 +67,7 @@ export const updateReview = async (
 	}
 };
 
-export const getReviews = async (userId) => {
+export const getReviews = async () => {
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
 		const snapshot = await getDocs(reviewRef);
@@ -75,7 +82,7 @@ export const getReviews = async (userId) => {
 	}
 };
 
-export const deleteReviewFromFirebase = async (userId, reviewId) => {
+export const deleteReviewFromFirebase = async (reviewId) => {
 	try {
 		const reviewDoc = doc(db, "users", userId, "reviews", reviewId);
 		await deleteDoc(reviewDoc);

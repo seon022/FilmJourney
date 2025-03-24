@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
@@ -13,9 +13,11 @@ import DateInput from "../components/review/DateInput";
 import RatingInput from "../components/review/RatingInput";
 import ReviewInput from "../components/review/ReviewInput";
 import useMovieStore from "../store/movieStore";
+import useUserStore from "../store/userStore";
 
 function ReviewForm() {
-	const { editReview, setEditReview } = useMovieStore();
+	const navigate = useNavigate();
+	const { editReview, setEditReview, movie } = useMovieStore();
 	const [reviewText, setReviewText] = useState("");
 	const [rating, setRating] = useState(5);
 	const [watchedDate, setWatchedDate] = useState(dayjs());
@@ -23,47 +25,63 @@ function ReviewForm() {
 	const [dateError, setDateError] = useState(false);
 
 	useEffect(() => {
+		console.log("editReview changed:", editReview);
 		if (editReview) {
-			setReviewText(editReview.text);
+			setReviewText(editReview.reviewText || "");
 			setRating(editReview.rating);
 			setWatchedDate(dayjs(editReview.watchedDate));
+		} else if (movie) {
+			setReviewText("");
+			setRating(5);
+			setWatchedDate(dayjs());
 		}
 	}, [editReview]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const { user } = useUserStore.getState();
+		const userId = user?.userId;
+		if (!userId) {
+			setError("User not logged in!");
+			return;
+		}
 
 		if (rating === null || !watchedDate) {
 			setDateError(!watchedDate);
 			return;
 		}
 
-		const userId = "7M03tdkoD19ICcaH0Jwv";
-		const movieData = {
-			id: editReview.movieId,
-			title: editReview.movieTitle,
-			poster_path: editReview.posterPath,
-		};
+		const movieData = editReview
+			? {
+					id: editReview.movieId,
+					title: editReview.movieTitle,
+					poster_path: editReview.posterPath,
+			  }
+			: {
+					id: movie.id,
+					title: movie.title,
+					poster_path: movie.poster_path,
+			  };
 
 		try {
 			if (editReview) {
 				await updateReview(
-					userId,
 					editReview.id,
 					movieData,
 					rating,
 					reviewText,
 					watchedDate.format("YYYY-MM-DD")
 				);
+				navigate("/review");
 				setError("Review updated successfully!");
 			} else {
 				await addReview(
-					userId,
 					movieData,
 					rating,
 					reviewText,
 					watchedDate.format("YYYY-MM-DD")
 				);
+				navigate("/review");
 				setError("Review saved successfully!");
 			}
 
@@ -85,7 +103,7 @@ function ReviewForm() {
 					<Typography variant="h5" gutterBottom>
 						{editReview
 							? `Edit Review for ${editReview.movieTitle}`
-							: "Add Review"}
+							: `${movie.title}`}
 					</Typography>
 					<RatingInput rating={rating} setRating={setRating} />
 					<DateInput
@@ -95,6 +113,7 @@ function ReviewForm() {
 						setDateError={setDateError}
 					/>
 					<ReviewInput reviewText={reviewText} setReviewText={setReviewText} />
+
 					<Button type="submit" variant="contained" color="primary">
 						{editReview ? "Update Review" : "Save Review"}
 					</Button>
