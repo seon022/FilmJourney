@@ -1,4 +1,4 @@
-import { blue, blueGrey, brown, yellow, lightBlue } from "@mui/material/colors";
+import { blue, blueGrey, brown, yellow } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 const NAVIGATION_HEIGHT = 70;

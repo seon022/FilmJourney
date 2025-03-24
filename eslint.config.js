@@ -56,5 +56,19 @@ export default [
 			"import/no-duplicates": "error",
 			"import/no-unresolved": "error",
 		},
+		settings: {
+			"import/resolver": {
+				alias: {
+					map: [
+						["@components", "./src/components"],
+						["@pages", "./src/pages"],
+						["@store", "./src/store"],
+						["@api", "./src/api"],
+						["@styles", "./src/styles"],
+					],
+					extensions: [".js", ".jsx"],
+				},
+			},
+		},
 	},
 ];

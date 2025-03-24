@@ -8,8 +8,9 @@ import {
 	updateDoc,
 } from "firebase/firestore";
 
-import { db } from "../firebase";
 import { useUserStore } from "@store/userStore";
+
+import { db } from "../firebase";
 
 const { user } = useUserStore.getState();
 const userId = user.userId;
