@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+
+import AddIcon from "@mui/icons-material/Add";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Button from "@mui/material/Button";
 import { useParams, useNavigate } from "react-router-dom";
+
 import {
   fetchMovieDetail,
   fetchCast,
   fetchSimilarMovies,
 } from "../api/tmdbApi.js";
-import StarRateIcon from "@mui/icons-material/StarRate";
-import AddIcon from "@mui/icons-material/Add";
-import Button from "@mui/material/Button";
 import MovieCard from "../components/MovieCard";
 
 function MovieDetail() {

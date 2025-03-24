@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import { getReviews, deleteReviewFromFirebase } from "../api/reviewService";
 
 const USER_ID = "7M03tdkoD19ICcaH0Jwv";
@@ -6,17 +7,23 @@ const USER_ID = "7M03tdkoD19ICcaH0Jwv";
 export const useMovieStore = create((set) => ({
 	movies: null,
 	reviews: [],
+	editReview: null,
+
 	setMovies: (movies) =>
 		set({
 			movies,
 		}),
 
 	setReviews: (reviews) => set({ reviews }),
+	setEditReview: (review) => set({ editReview: review }),
+
 	fetchReviews: async () => {
 		try {
 			const reviews = await getReviews(USER_ID);
 			set({ reviews });
-		} catch (error) {}
+		} catch (error) {
+			console.error("Error fetching reviews:", error);
+		}
 	},
 
 	deleteReview: async (reviewId) => {

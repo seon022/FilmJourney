@@ -1,4 +1,3 @@
-import { db } from "../firebase";
 import {
 	collection,
 	addDoc,
@@ -6,7 +5,10 @@ import {
 	getDocs,
 	doc,
 	deleteDoc,
+	updateDoc,
 } from "firebase/firestore";
+
+import { db } from "../firebase";
 
 export const addReview = async (
 	userId,
@@ -33,6 +35,31 @@ export const addReview = async (
 	}
 };
 
+export const updateReview = async (
+	userId,
+	reviewId,
+	movieData,
+	rating,
+	reviewText,
+	watchedDate
+) => {
+	try {
+		const reviewDocRef = doc(db, "users", userId, "reviews", reviewId);
+		await updateDoc(reviewDocRef, {
+			movieId: movieData.id,
+			movieTitle: movieData.title,
+			moviePoster: movieData.poster_path || "",
+			watchedDate: watchedDate || null,
+			rating,
+			reviewText,
+			updatedAt: serverTimestamp(),
+		});
+		console.log("Review updated successfully!");
+	} catch (error) {
+		console.error("Error updating review:", error);
+	}
+};
+
 export const getReviews = async (userId) => {
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
@@ -43,7 +70,7 @@ export const getReviews = async (userId) => {
 		}));
 		return reviews;
 	} catch (error) {
-		console.error("error in getting reviews", error);
+		console.error("Error fetching reviews:", error);
 		return [];
 	}
 };

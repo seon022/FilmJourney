@@ -1,9 +1,10 @@
 import * as React from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import { alpha, styled } from "@mui/material/styles";
+import Toolbar from "@mui/material/Toolbar";
 
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",

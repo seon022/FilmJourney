@@ -1,17 +1,28 @@
 import React, { useEffect } from "react";
-import useMovieStore from "../store/movieStore";
+
 import { Container, Typography } from "@mui/material";
-import ReviewItem from "../components/review/ReviewItem";
+import { useNavigate } from "react-router-dom";
+
 import BackHeader from "../components/BackHeader";
+import ReviewItem from "../components/review/ReviewItem";
+import useMovieStore from "../store/movieStore";
 
 const ReviewPage = () => {
+	const navigate = useNavigate();
 	const reviews = useMovieStore((state) => state.reviews);
 	const fetchReviews = useMovieStore((state) => state.fetchReviews);
 	const deleteReview = useMovieStore((state) => state.deleteReview);
+	const setEditReview = useMovieStore((state) => state.setEditReview);
 
 	useEffect(() => {
 		fetchReviews();
 	}, []);
+
+	const handleEdit = (review) => {
+		setEditReview(review);
+		navigate(`/review/${review.movieId}`);
+	};
+
 	return (
 		<div>
 			<BackHeader text="My Review" />
@@ -22,6 +33,7 @@ const ReviewPage = () => {
 							key={review.id}
 							review={review}
 							onDelete={deleteReview}
+							onEdit={() => handleEdit(review)}
 						/>
 					))
 				) : (

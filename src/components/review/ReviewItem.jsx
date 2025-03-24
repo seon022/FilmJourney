@@ -1,11 +1,10 @@
 import React from "react";
-import { Card, CardContent, Typography, IconButton, Box } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+
 import DeleteIcon from "@mui/icons-material/Delete";
-import { fontSize } from "@mui/system";
+import EditIcon from "@mui/icons-material/Edit";
+import { Card, CardContent, Typography, IconButton, Box } from "@mui/material";
 
 const ReviewItem = ({ review, onDelete, onEdit }) => {
-	// reviewText를 100자까지 잘라 보여주는 함수
 	const truncateText = (text, maxLength = 100) => {
 		if (!text) return "";
 		return text.length > maxLength
