@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -22,8 +23,16 @@ const navItems = [
 ];
 
 const Navigation = () => {
-	const [value, setValue] = useState(0);
 	const navigate = useNavigate();
+	const location = useLocation();
+	const [value, setValue] = useState(0);
+
+	useEffect(() => {
+		const pathIndex = navItems.findIndex(
+			(item) => item.path === location.pathname
+		);
+		if (pathIndex !== -1) setValue(pathIndex);
+	}, [location.pathname]);
 
 	const handleNavigation = (newValue) => {
 		setValue(newValue);
