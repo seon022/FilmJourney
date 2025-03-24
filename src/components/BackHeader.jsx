@@ -30,6 +30,7 @@ const BackHeader = ({ text }) => {
 					position: "absolute",
 					left: "50%",
 					transform: "translateX(-50%)",
+					fontSize: "1.25rem",
 				}}
 			>
 				{text}

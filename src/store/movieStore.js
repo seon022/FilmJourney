@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { deleteReviewFromFirebase } from "../api/reviewService";
+import { getReviews, deleteReviewFromFirebase } from "../api/reviewService";
 
 const USER_ID = "7M03tdkoD19ICcaH0Jwv";
 
@@ -10,11 +10,18 @@ export const useMovieStore = create((set) => ({
 		set({
 			movies,
 		}),
-	setReviews: (review) =>
-		set((state) => ({ reviews: [...state.reviews, review] })),
+
+	setReviews: (reviews) => set({ reviews }),
+	fetchReviews: async () => {
+		try {
+			const reviews = await getReviews(USER_ID);
+			set({ reviews });
+		} catch (error) {}
+	},
+
 	deleteReview: async (reviewId) => {
 		try {
-			await deleteReviewFromFirebase(USER_ID, reviewId); // 상수 userId 사용
+			await deleteReviewFromFirebase(USER_ID, reviewId);
 			set((state) => ({
 				reviews: state.reviews.filter((review) => review.id !== reviewId),
 			}));

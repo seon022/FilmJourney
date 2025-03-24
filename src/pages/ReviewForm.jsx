@@ -10,6 +10,7 @@ import RatingInput from "../components/review/RatingInput";
 import DateInput from "../components/review/DateInput";
 import ReviewInput from "../components/review/ReviewInput";
 import dayjs from "dayjs";
+import { Container } from "@mui/material";
 
 function ReviewForm() {
 	const { id } = useParams();
@@ -46,7 +47,7 @@ function ReviewForm() {
 	};
 
 	return (
-		<div>
+		<Container>
 			<BackHeader text="My Review" />
 			<form
 				onSubmit={handleSubmit}
@@ -66,10 +67,7 @@ function ReviewForm() {
 					dateError={dateError}
 					setDateError={setDateError}
 				/>
-				<ReviewInput
-					reviewText={reviewText}
-					setReviewText={setReviewText}
-				/>
+				<ReviewInput reviewText={reviewText} setReviewText={setReviewText} />
 				<Button type="submit" variant="contained" color="primary">
 					Save
 				</Button>
@@ -87,7 +85,7 @@ function ReviewForm() {
 					{error}
 				</Alert>
 			</Snackbar>
-		</div>
+		</Container>
 	);
 }
 
