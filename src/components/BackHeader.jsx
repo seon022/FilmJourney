@@ -1,43 +1,40 @@
 import React from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const BackHeader = ({ text }) => {
 	const navigate = useNavigate();
-	const iconSize = 30;
+
 	return (
-		<Box
-			component="header"
-			sx={{
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "space-between",
-				position: "relative",
-				height: "50px",
-				marginBottom: "20px",
-			}}
-		>
-			<Box
-				onClick={() => navigate(-1)}
-				sx={{ cursor: "pointer", width: `${iconSize}px` }}
-			>
-				<ArrowBackIcon />
-			</Box>
+		<AppBar position="static">
+			<Toolbar>
+				<IconButton
+					edge="start"
+					color="inherit"
+					onClick={() => navigate(-1)}
+					sx={{ mr: 2 }}
+				>
+					<ArrowBackIcon />
+				</IconButton>
 
-			<Box
-				sx={{
-					position: "absolute",
-					left: "50%",
-					transform: "translateX(-50%)",
-					fontSize: "1.25rem",
-				}}
-			>
-				{text}
-			</Box>
+				<Typography
+					variant="h6"
+					component="div"
+					sx={{ flexGrow: 1, textAlign: "center" }}
+				>
+					{text}
+				</Typography>
 
-			<Box sx={{ width: `${iconSize}px` }} />
-		</Box>
+				{/* Placeholder to balance layout */}
+				<IconButton edge="end" sx={{ visibility: "hidden" }}>
+					<ArrowBackIcon />
+				</IconButton>
+			</Toolbar>
+		</AppBar>
 	);
 };
 

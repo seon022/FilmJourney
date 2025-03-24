@@ -9,7 +9,7 @@ const theme = createTheme({
 	palette: {
 		primary: {
 			main: brown[400],
-			light: brown[300],
+			light: brown[200],
 		},
 		secondary: {
 			main: blueGrey[300],
@@ -75,7 +75,7 @@ const theme = createTheme({
 		MuiContainer: {
 			styleOverrides: {
 				root: {
-					paddingTop: "20px",
+					paddingTop: "30px",
 					paddingLeft: "20px",
 					paddingRight: "20px",
 				},

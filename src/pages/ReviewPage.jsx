@@ -13,19 +13,24 @@ const ReviewPage = () => {
 		fetchReviews();
 	}, []);
 	return (
-		<Container>
+		<div>
 			<BackHeader text="My Review" />
-
-			{reviews.length > 0 ? (
-				reviews.map((review) => (
-					<ReviewItem key={review.id} review={review} onDelete={deleteReview} />
-				))
-			) : (
-				<Typography variant="body1" color="gray">
-					No reviews yet.
-				</Typography>
-			)}
-		</Container>
+			<Container>
+				{reviews.length > 0 ? (
+					reviews.map((review) => (
+						<ReviewItem
+							key={review.id}
+							review={review}
+							onDelete={deleteReview}
+						/>
+					))
+				) : (
+					<Typography variant="body1" color="gray">
+						No reviews yet.
+					</Typography>
+				)}
+			</Container>
+		</div>
 	);
 };
 export default ReviewPage;
