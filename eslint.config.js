@@ -49,10 +49,26 @@ export default [
 					pathGroupsExcludedImportTypes: ["react"],
 					alphabetize: { order: "asc", caseInsensitive: true },
 					"newlines-between": "always",
+					warnOnUnassignedImports: true,
 				},
 			],
 			"import/newline-after-import": ["error", { count: 1 }],
 			"import/no-duplicates": "error",
+			"import/no-unresolved": "error",
+		},
+		settings: {
+			"import/resolver": {
+				alias: {
+					map: [
+						["@components", "./src/components"],
+						["@pages", "./src/pages"],
+						["@store", "./src/store"],
+						["@api", "./src/api"],
+						["@styles", "./src/styles"],
+					],
+					extensions: [".js", ".jsx"],
+				},
+			},
 		},
 	},
 ];

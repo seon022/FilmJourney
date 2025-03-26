@@ -1,6 +1,6 @@
+import StarRateIcon from "@mui/icons-material/StarRate";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
-import StarRateIcon from "@mui/icons-material/StarRate";
 
 function MovieCard({ id, poster, title, aveRate }) {
   //movie component is receiving props from the parent component

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Button, Grid2, Typography, Box, Divider } from "@mui/material";
 
 import MovieCard from "../components/MovieCard";
