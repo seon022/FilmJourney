@@ -4,7 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 
 import useMovieStore from "../../store/movieStore";
 import { Box } from "@mui/system";
-import { Card, CardMedia } from "@mui/material";
+import { CardMedia } from "@mui/material";
 
 const MovieCalendar = () => {
 	const { reviews, fetchReviews } = useMovieStore();
@@ -22,21 +22,24 @@ const MovieCalendar = () => {
 	}));
 
 	const eventContent = (eventInfo) => {
+		if (!eventInfo?.event || !eventInfo.view?.calendar) {
+			return <div>Loading...</div>;
+		}
 		const poster = eventInfo.event.extendedProps.poster;
-		if (poster) {
-			return (
-				<div>
+
+		return (
+			<div>
+				{poster ? (
 					<CardMedia
 						component="img"
 						src={`https://image.tmdb.org/t/p/w200${poster}`}
 						alt={eventInfo.event.title}
 					/>
-				</div>
-			);
-		} else {
-			return <div></div>;
-		}
-		return null;
+				) : (
+					<div>{eventInfo.event.title}</div>
+				)}
+			</div>
+		);
 	};
 	return (
 		<Box sx={{ width: "100%", mb: 6 }}>
