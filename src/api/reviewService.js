@@ -23,7 +23,7 @@ export const addReview = async (movieData, rating, reviewText, watchedDate) => {
 		await addDoc(reviewRef, {
 			movieId: movieData.id,
 			movieTitle: movieData.title,
-			moviePoster: movieData.poster_path || "",
+			moviePoster: movieData.posterPath || "",
 			reviewDate: new Date().toISOString().split("T")[0],
 			watchedDate: watchedDate || null,
 			rating,
@@ -56,7 +56,7 @@ export const updateReview = async (
 		await updateDoc(reviewDocRef, {
 			movieId: movieData.id,
 			movieTitle: movieData.title,
-			moviePoster: movieData.poster_path || "",
+			moviePoster: movieData.posterPath || "",
 			watchedDate: watchedDate || null,
 			rating,
 			reviewText,

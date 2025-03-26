@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import BackHeader from "../components/BackHeader";
 import ReviewItem from "../components/review/ReviewItem";
 import useMovieStore from "../store/movieStore";
+import MovieCalendar from "../components/review/MovieCalendar";
 
 const ReviewPage = () => {
 	const navigate = useNavigate();
@@ -27,6 +28,10 @@ const ReviewPage = () => {
 		<div>
 			<BackHeader text="My Review" />
 			<Container>
+				<MovieCalendar />
+				<Typography variant="h5" color="secondary" gutterBottom>
+					Reviews
+				</Typography>
 				{reviews.length > 0 ? (
 					reviews.map((review) => (
 						<ReviewItem

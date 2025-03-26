@@ -1,45 +1,45 @@
 {
-  "name": "film_journey_vite",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-  "lint": "eslint . --fix",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@fullcalendar/core": "^6.1.15",
-    "@fullcalendar/daygrid": "^6.1.15",
-    "@fullcalendar/interaction": "^6.1.15",
-    "@fullcalendar/react": "^6.1.15",
-    "@fullcalendar/timegrid": "^6.1.15",
-    "@mui/icons-material": "^6.4.8",
-    "@mui/material": "^6.4.7",
-    "@mui/system": "^6.4.7",
-    "@mui/x-date-pickers": "^7.28.0",
-    "dayjs": "^1.11.13",
-    "firebase": "^11.4.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "6",
-    "zustand": "^5.0.3"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.21.0",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "sass-embedded": "^1.86.0",
-    "vite": "^6.2.0"
-  }
+	"name": "film_journey_vite",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"lint": "eslint . --fix",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
+		"@fullcalendar/react": "^6.1.15",
+		"@fullcalendar/core": "^6.1.15",
+		"@fullcalendar/daygrid": "^6.1.15",
+		"@fullcalendar/interaction": "^6.1.15",
+		"@fullcalendar/timegrid": "^6.1.15",
+		"@mui/icons-material": "^6.4.8",
+		"@mui/material": "^6.4.7",
+		"@mui/system": "^6.4.7",
+		"@mui/x-date-pickers": "^7.28.0",
+		"dayjs": "^1.11.13",
+		"firebase": "^11.4.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-router-dom": "6",
+		"zustand": "^5.0.3"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.21.0",
+		"@types/react": "^19.0.10",
+		"@types/react-dom": "^19.0.4",
+		"@vitejs/plugin-react": "^4.3.4",
+		"eslint": "^9.21.0",
+		"eslint-import-resolver-alias": "^1.1.2",
+		"eslint-plugin-import": "^2.31.0",
+		"eslint-plugin-react-hooks": "^5.1.0",
+		"eslint-plugin-react-refresh": "^0.4.19",
+		"globals": "^15.15.0",
+		"sass-embedded": "^1.86.0",
+		"vite": "^6.2.0"
+	}
 }
