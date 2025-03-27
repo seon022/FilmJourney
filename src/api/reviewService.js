@@ -12,10 +12,13 @@ import useUserStore from "@store/userStore";
 
 import { db } from "../firebase";
 
-const { user } = useUserStore.getState();
-const userId = user ? user.userId : null;
+const getUserId = () => {
+	const { user } = useUserStore.getState();
+	return user ? user.userId : null;
+};
 
 export const addReview = async (movieData, rating, reviewText, watchedDate) => {
+	const userId = getUserId();
 	if (!userId) throw new Error("User is not logged in.");
 
 	try {
@@ -49,6 +52,7 @@ export const updateReview = async (
 	reviewText,
 	watchedDate
 ) => {
+	const userId = getUserId();
 	if (!userId) throw new Error("User is not logged in.");
 
 	try {
@@ -69,6 +73,7 @@ export const updateReview = async (
 };
 
 export const getReviews = async () => {
+	const userId = getUserId();
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
 		const snapshot = await getDocs(reviewRef);
@@ -84,6 +89,7 @@ export const getReviews = async () => {
 };
 
 export const deleteReviewFromFirebase = async (reviewId) => {
+	const userId = getUserId();
 	try {
 		const reviewDoc = doc(db, "users", userId, "reviews", reviewId);
 		await deleteDoc(reviewDoc);

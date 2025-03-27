@@ -7,7 +7,7 @@ import { auth } from "../firebase";
 const useUserStore = create(
 	persist(
 		devtools((set) => ({
-			user: { userId: "7M03tdkoD19ICcaH0Jwv", email: "" },
+			user: null,
 
 			login: (userData) => set({ user: userData }),
 
