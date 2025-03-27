@@ -29,7 +29,12 @@ const ReviewPage = () => {
 			<BackHeader text="My Review" />
 			<Container>
 				<MovieCalendar />
-				<Typography variant="h5" color="secondary" gutterBottom>
+				<Typography
+					variant="h5"
+					color="secondary"
+					gutterBottom
+					sx={{ fontSize: "1.4rem", mb: 2 }}
+				>
 					Reviews
 				</Typography>
 				{reviews.length > 0 ? (

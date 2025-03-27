@@ -4,8 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 
 import useMovieStore from "../../store/movieStore";
 import { Box } from "@mui/system";
-import { CardMedia, CircularProgress, Typography, Chip } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { CardMedia, CircularProgress, Chip } from "@mui/material";
 
 const MovieCalendar = () => {
 	const { reviews, fetchReviews } = useMovieStore();
@@ -70,7 +69,10 @@ const MovieCalendar = () => {
 							size="small"
 							sx={{
 								mt: 1,
-								marginLeft: 1,
+								fontSize: {
+									xs: "0.7rem",
+									sm: "0.9rem",
+								},
 							}}
 							onClick={() => {
 								console.log("Show more events!");
@@ -86,7 +88,7 @@ const MovieCalendar = () => {
 		<Box
 			sx={{
 				width: "100%",
-				mb: 6,
+				mb: 4,
 				fontSize: { xs: 12, sm: 16 },
 			}}
 		>
@@ -97,11 +99,6 @@ const MovieCalendar = () => {
 				events={events}
 				eventContent={eventContent}
 				eventColor="transparent"
-				headerToolbar={{
-					right: "prev,next today",
-					center: "title",
-					left: "dayGridMonth,dayGridWeek",
-				}}
 			/>
 		</Box>
 	);
