@@ -1,8 +1,10 @@
 import { useState } from "react";
+
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // 페이지 이동을 위한 Hook
+
 import { signInWithGooglePopup } from "../firebase";
 import useUserStore from "../store/userStore";
-import { Button } from "@mui/material";
 
 function Auth() {
   const { user, setUser, logout } = useUserStore();

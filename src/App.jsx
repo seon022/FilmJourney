@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import ReviewPage from "@pages/ReviewPage";
+
 import Navigation from "./components/Navigation";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";

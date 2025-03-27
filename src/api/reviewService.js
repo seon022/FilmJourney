@@ -8,12 +8,12 @@ import {
 	updateDoc,
 } from "firebase/firestore";
 
-import { useUserStore } from "@store/userStore";
+import useUserStore from "@store/userStore";
 
 import { db } from "../firebase";
 
 const { user } = useUserStore.getState();
-const userId = user.userId;
+const userId = user ? user.userId : null;
 
 export const addReview = async (movieData, rating, reviewText, watchedDate) => {
 	if (!userId) throw new Error("User is not logged in.");

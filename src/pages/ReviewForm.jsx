@@ -14,7 +14,7 @@ import DateInput from "@components/review/DateInput";
 import RatingInput from "@components/review/RatingInput";
 import ReviewInput from "@components/review/ReviewInput";
 import { useMovieStore } from "@store/movieStore";
-import { useUserStore } from "@store/userStore";
+import useUserStore from "@store/userStore";
 
 function ReviewForm() {
 	const navigate = useNavigate();

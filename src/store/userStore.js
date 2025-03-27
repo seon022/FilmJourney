@@ -1,5 +1,8 @@
-import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { create } from "zustand";
+import { persist, devtools } from "zustand/middleware";
+
+import { auth } from "../firebase";
 
 const useUserStore = create(
 	persist(
