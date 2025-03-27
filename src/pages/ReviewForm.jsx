@@ -55,14 +55,14 @@ function ReviewForm() {
 			? {
 					id: editReview.movieId,
 					title: editReview.movieTitle,
-					posterPath: editReview.posterPath,
+					posterPath: editReview.moviePoster,
 			  }
 			: {
 					id: movie.id,
 					title: movie.title,
 					posterPath: movie.poster_path,
 			  };
-
+		console.log(movieData);
 		try {
 			if (editReview) {
 				await updateReview(
