@@ -25,10 +25,21 @@ const ReviewItem = ({ review, onDelete, onEdit }) => {
 				<Typography
 					variant="h6"
 					gutterBottom
-					sx={{ display: "flex", alignItems: "center" }}
+					sx={{
+						display: "flex",
+						flexDirection: { xs: "column", sm: "row" },
+						fontSize: "1.1rem",
+						alignItems: { xs: "flex-start", sm: "center" },
+					}}
 				>
-					{review.movieTitle}{" "}
-					<Box sx={{ marginLeft: "10px", fontSize: "0.9rem" }}>
+					{review.movieTitle}
+					<Box
+						sx={{
+							marginLeft: { sm: "10px", xs: 0 },
+							fontSize: "0.9rem",
+							marginTop: { xs: "8px", sm: 0 },
+						}}
+					>
 						⭐{review.rating}
 					</Box>
 				</Typography>
@@ -51,10 +62,18 @@ const ReviewItem = ({ review, onDelete, onEdit }) => {
 				}}
 			>
 				<IconButton color="secondary" onClick={() => onEdit(review.id)}>
-					<EditIcon />
+					<EditIcon
+						sx={{
+							fontSize: { xs: "20px", sm: "24px" },
+						}}
+					/>
 				</IconButton>
 				<IconButton color="primary" onClick={() => onDelete(review.id)}>
-					<DeleteIcon />
+					<DeleteIcon
+						sx={{
+							fontSize: { xs: "20px", sm: "24px" },
+						}}
+					/>
 				</IconButton>
 			</Box>
 		</Card>
