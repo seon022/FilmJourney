@@ -6,7 +6,7 @@ import useMovieStore from "../../store/movieStore";
 import { Box } from "@mui/system";
 import { CardMedia, CircularProgress, Chip } from "@mui/material";
 
-const MovieCalendar = () => {
+const MovieCalendar = ({ onDateClick }) => {
 	const { reviews, fetchReviews } = useMovieStore();
 
 	useEffect(() => {
@@ -49,7 +49,7 @@ const MovieCalendar = () => {
 		const otherEvents = eventInfo.event.extendedProps.otherEvents;
 
 		return (
-			<>
+			<div>
 				<div>
 					<CardMedia
 						component="img"
@@ -74,13 +74,10 @@ const MovieCalendar = () => {
 									sm: "0.9rem",
 								},
 							}}
-							onClick={() => {
-								console.log("Show more events!");
-							}}
 						/>
 					)}
 				</div>
-			</>
+			</div>
 		);
 	};
 
@@ -99,6 +96,11 @@ const MovieCalendar = () => {
 				events={events}
 				eventContent={eventContent}
 				eventColor="transparent"
+				eventClick={(info) => {
+					const localDate = info.event.start.toLocaleDateString("en-CA");
+					console.log(localDate);
+					onDateClick(localDate);
+				}}
 			/>
 		</Box>
 	);
