@@ -19,4 +19,7 @@ export default defineConfig({
 			"@store": path.resolve(__dirname, "src/store"),
 		},
 	},
+	optimizeDeps: {
+		include: ["@mui/material", "@emotion/react", "@emotion/styled"],
+	},
 });
