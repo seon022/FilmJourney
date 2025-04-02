@@ -85,7 +85,7 @@ const MovieCalendar = ({ onDateClick }) => {
 		<Box
 			sx={{
 				width: "100%",
-				mb: 4,
+				mb: 6,
 				fontSize: { xs: 12, sm: 16 },
 			}}
 		>
@@ -98,7 +98,6 @@ const MovieCalendar = ({ onDateClick }) => {
 				eventColor="transparent"
 				eventClick={(info) => {
 					const localDate = info.event.start.toLocaleDateString("en-CA");
-					console.log(localDate);
 					onDateClick(localDate);
 				}}
 			/>

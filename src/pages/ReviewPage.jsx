@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import BackHeader from "../components/BackHeader";
@@ -47,16 +47,35 @@ const ReviewPage = () => {
 			<BackHeader text="My Review" />
 			<Container>
 				<MovieCalendar onDateClick={handleDateClick} />
-				<Typography
-					variant="h5"
-					color="secondary"
-					gutterBottom
-					sx={{ fontSize: "1.4rem", mb: 2 }}
+				<Box
+					display="flex"
+					justifyContent="space-between"
+					alignItems="start"
+					sx={{ mb: 2 }}
 				>
-					{filteredReviews.length > 0
-						? "Review " + selectedDate
-						: "Review List"}
-				</Typography>
+					<Typography
+						variant="h5"
+						color="secondary"
+						gutterBottom
+						sx={{ fontSize: "1.4rem", mb: 2 }}
+					>
+						{filteredReviews.length > 0
+							? "Review " + selectedDate
+							: "Review List"}
+					</Typography>
+					{selectedDate && (
+						<Button
+							variant="outlined"
+							color="primary"
+							onClick={() => {
+								setSelectedDate(null);
+								setFilteredReviews([]);
+							}}
+						>
+							View All Reviews
+						</Button>
+					)}
+				</Box>
 				<Box
 					sx={{
 						display: "flex",
