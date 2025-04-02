@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { Container, Typography, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -27,19 +27,22 @@ const ReviewPage = () => {
 		navigate(`/review/${review.movieId}`);
 	};
 
-	const handleDateClick = (date) => {
-		const halfWindowHeight = window.innerHeight / 2;
-		window.scrollBy({
-			top: halfWindowHeight,
-			behavior: "smooth",
-		});
+	const reviewListRef = useRef(null);
 
+	const handleDateClick = (date) => {
 		setSelectedDate(date);
 
-		const filtered = reviews.filter((review) => {
-			return review.watchedDate === date;
-		});
+		const filtered = reviews.filter((review) => review.watchedDate === date);
 		setFilteredReviews(filtered);
+
+		setTimeout(() => {
+			if (reviewListRef.current) {
+				reviewListRef.current.scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			}
+		}, 100);
 	};
 
 	return (
@@ -52,6 +55,7 @@ const ReviewPage = () => {
 					justifyContent="space-between"
 					alignItems="start"
 					sx={{ mb: 2 }}
+					ref={reviewListRef}
 				>
 					<Typography
 						variant="h5"
