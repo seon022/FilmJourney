@@ -1,4 +1,5 @@
 import { Container } from "@mui/system";
+
 import UnderConstruction from "../components/UnderConstruction";
 
 const SearchPage = () => {

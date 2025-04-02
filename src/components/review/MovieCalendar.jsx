@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import FullCalendar from "@fullcalendar/react";
+
 import dayGridPlugin from "@fullcalendar/daygrid";
+import FullCalendar from "@fullcalendar/react";
+import { CardMedia, CircularProgress, Chip } from "@mui/material";
+import { Box } from "@mui/system";
 
 import useMovieStore from "../../store/movieStore";
-import { Box } from "@mui/system";
-import { CardMedia, CircularProgress, Chip } from "@mui/material";
+
 
 const MovieCalendar = ({ onDateClick }) => {
 	const { reviews, fetchReviews } = useMovieStore();

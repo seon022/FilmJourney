@@ -4,11 +4,11 @@ import ReviewPage from "@pages/ReviewPage";
 
 import Navigation from "./components/Navigation";
 import Auth from "./pages/Auth";
+import FavoritesPage from "./pages/FavoritesPage";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import MyPage from "./pages/MyPage";
 import ReviewForm from "./pages/ReviewForm";
-import FavoritesPage from "./pages/FavoritesPage";
 import SearchPage from "./pages/SearchPage";
 
 function App() {

@@ -4,9 +4,9 @@ import { Container, Typography, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import BackHeader from "../components/BackHeader";
+import MovieCalendar from "../components/review/MovieCalendar";
 import ReviewItem from "../components/review/ReviewItem";
 import useMovieStore from "../store/movieStore";
-import MovieCalendar from "../components/review/MovieCalendar";
 
 const ReviewPage = () => {
 	const navigate = useNavigate();
