@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import FullCalendar from "@fullcalendar/react";
+
 import dayGridPlugin from "@fullcalendar/daygrid";
+import FullCalendar from "@fullcalendar/react";
+import { CardMedia, CircularProgress, Chip } from "@mui/material";
+import { Box } from "@mui/system";
 
 import useMovieStore from "../../store/movieStore";
-import { Box } from "@mui/system";
-import { CardMedia, CircularProgress, Chip } from "@mui/material";
 
-const MovieCalendar = () => {
+
+const MovieCalendar = ({ onDateClick }) => {
 	const { reviews, fetchReviews } = useMovieStore();
 
 	useEffect(() => {
@@ -49,7 +51,7 @@ const MovieCalendar = () => {
 		const otherEvents = eventInfo.event.extendedProps.otherEvents;
 
 		return (
-			<>
+			<div>
 				<div>
 					<CardMedia
 						component="img"
@@ -74,13 +76,10 @@ const MovieCalendar = () => {
 									sm: "0.9rem",
 								},
 							}}
-							onClick={() => {
-								console.log("Show more events!");
-							}}
 						/>
 					)}
 				</div>
-			</>
+			</div>
 		);
 	};
 
@@ -88,7 +87,7 @@ const MovieCalendar = () => {
 		<Box
 			sx={{
 				width: "100%",
-				mb: 4,
+				mb: 6,
 				fontSize: { xs: 12, sm: 16 },
 			}}
 		>
@@ -99,6 +98,10 @@ const MovieCalendar = () => {
 				events={events}
 				eventContent={eventContent}
 				eventColor="transparent"
+				eventClick={(info) => {
+					const localDate = info.event.start.toLocaleDateString("en-CA");
+					onDateClick(localDate);
+				}}
 			/>
 		</Box>
 	);
