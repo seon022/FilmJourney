@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
-
-import AddIcon from "@mui/icons-material/Add";
-import StarRateIcon from "@mui/icons-material/StarRate";
-import Fab from "@mui/material/Fab";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
 import { useParams, useNavigate } from "react-router-dom";
 
+// API, components, and store
 import {
   fetchMovieDetail,
   fetchCast,
@@ -15,11 +10,23 @@ import {
 import MovieCard from "../components/MovieCard";
 import useMovieStore from "../store/movieStore";
 
+// MUI
+import AddIcon from "@mui/icons-material/Add";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Fab from "@mui/material/Fab";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
+
+// firebase
+import { db } from "../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
 function MovieDetail() {
   const [loading, setLoading] = useState(true);
   const [detail, setDetail] = useState([]);
   const [cast, setCast] = useState([]);
   const [similar, setSimilar] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
   const setMovie = useMovieStore((state) => state.setMovie);
@@ -52,6 +59,21 @@ function MovieDetail() {
   };
   useEffect(() => {
     getDetail();
+    const fetchReviews = async () => {
+      const userId = "bHvYf73rObWcSGSYpidqi65prWG3"; // 특정 사용자의 리뷰를 가져오고 싶다면 사용자 ID를 설정
+      const reviewsCollectionRef = collection(db, "users", userId, "reviews"); // 해당 사용자의 리뷰 컬렉션 참조
+      const querySnapshot = await getDocs(reviewsCollectionRef);
+
+      const reviewsData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().userName, // 리뷰 문서에 사용자 이름을 포함
+        ...doc.data(),
+      }));
+
+      setReviews(reviewsData);
+    };
+
+    fetchReviews();
   }, []);
   return (
     <div className="cont-wrapper">
@@ -112,33 +134,18 @@ function MovieDetail() {
           <div className="detail-card">
             <h3>Rivews</h3>
             <ul className="review-list">
-              <li className="review-set">
-                <Avatar alt="Remy Sharp" src="/assets/img-profile.jpg" />
-                <div className="review-content">
-                  <div className="review-header">
-                    <p className="name">Name</p>
-                    <StarRateIcon
-                      fontSize="small"
-                      color="rating"
-                    ></StarRateIcon>
+              {reviews.map((review, index) => (
+                <li key={index} className="review-set">
+                  <Avatar alt={review.name} src={review.avatarUrl} />
+                  <div className="review-content">
+                    <div className="review-header">
+                      <p className="name">{review.name}</p>
+                      <StarRateIcon fontSize="small" color="rating" />
+                    </div>
+                    <p className="cont">{review.reviewText}</p>
                   </div>
-                  <p className="cont">this is a review</p>
-                </div>
-              </li>
-              <Divider component="li" />
-              <li className="review-set">
-                <Avatar alt="Remy Sharp" src="/assets/img-profile.jpg" />
-                <div className="review-content">
-                  <div className="review-header">
-                    <p className="name">Name</p>
-                    <StarRateIcon
-                      fontSize="small"
-                      color="rating"
-                    ></StarRateIcon>
-                  </div>
-                  <p className="cont">this is a review</p>
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="detail-card">
