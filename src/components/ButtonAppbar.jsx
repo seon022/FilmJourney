@@ -33,9 +33,10 @@ export default function ButtonAppBar({ showSearch = false }) {
 				<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
 					<Box
 						component="img"
-						src="/public/FilmJourney_white.svg"
+						src="/FilmJourney_white.svg"
 						alt="logo"
 						sx={{ height: 56 }}
+						onClick={() => (window.location.href = "/")}
 					/>
 
 					<Box sx={{ display: "flex", alignItems: "center" }}>
