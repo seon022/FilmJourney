@@ -180,6 +180,16 @@
       .cont {
         margin: 0;
       }
+      .rating {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        p {
+          font-size: 14px;
+          font-weight: 600;
+          margin: 0;
+        }
+      }
     }
   }
 }

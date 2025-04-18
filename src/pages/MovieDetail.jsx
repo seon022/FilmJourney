@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import useUserStore from "../store/userStore";
 // API, components, and store
 import {
   fetchMovieDetail,
@@ -9,17 +9,13 @@ import {
 } from "../api/tmdbApi.js";
 import MovieCard from "../components/MovieCard";
 import useMovieStore from "../store/movieStore";
-
+import { getAllReviewsForMovie } from "../api/reviewService.js";
 // MUI
 import AddIcon from "@mui/icons-material/Add";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Fab from "@mui/material/Fab";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
-
-// firebase
-import { db } from "../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
 
 function MovieDetail() {
   const [loading, setLoading] = useState(true);
@@ -28,6 +24,7 @@ function MovieDetail() {
   const [similar, setSimilar] = useState([]);
   const [reviews, setReviews] = useState([]);
   const { id } = useParams();
+  const { user } = useUserStore();
   const navigate = useNavigate();
   const setMovie = useMovieStore((state) => state.setMovie);
   const setEditReview = useMovieStore((state) => state.setEditReview);
@@ -57,24 +54,24 @@ function MovieDetail() {
     setSimilar(await fetchSimilarMovies(id));
     setLoading(false);
   };
+
   useEffect(() => {
     getDetail();
+  }, []);
+
+  useEffect(() => {
+    console.log("user", user);
+    if (!user) return; // 아직 로그인 정보 없음
+
     const fetchReviews = async () => {
-      const userId = "bHvYf73rObWcSGSYpidqi65prWG3"; // 특정 사용자의 리뷰를 가져오고 싶다면 사용자 ID를 설정
-      const reviewsCollectionRef = collection(db, "users", userId, "reviews"); // 해당 사용자의 리뷰 컬렉션 참조
-      const querySnapshot = await getDocs(reviewsCollectionRef);
-
-      const reviewsData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        name: doc.data().userName, // 리뷰 문서에 사용자 이름을 포함
-        ...doc.data(),
-      }));
-
-      setReviews(reviewsData);
+      const fetchedReviews = await getAllReviewsForMovie(id);
+      setReviews(fetchedReviews); // 이제 진짜 배열이 들어감!
     };
 
     fetchReviews();
-  }, []);
+    console.log("reviews", reviews);
+  }, [user, id]);
+
   return (
     <div className="cont-wrapper">
       {loading ? (
@@ -139,8 +136,11 @@ function MovieDetail() {
                   <Avatar alt={review.name} src={review.avatarUrl} />
                   <div className="review-content">
                     <div className="review-header">
-                      <p className="name">{review.name}</p>
-                      <StarRateIcon fontSize="small" color="rating" />
+                      <p className="name">{review.userName}</p>
+                      <div className="rating">
+                        <p>{review.rating}</p>
+                        <StarRateIcon fontSize="small" color="rating" />
+                      </div>
                     </div>
                     <p className="cont">{review.reviewText}</p>
                   </div>
