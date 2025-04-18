@@ -1,15 +1,23 @@
 import React from "react";
 
+
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Card, CardContent, Typography, IconButton, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ReviewItem = ({ review, onDelete, onEdit }) => {
+	const navigate = useNavigate();
+
 	const truncateText = (text, maxLength = 100) => {
 		if (!text) return "";
 		return text.length > maxLength
 			? text.substring(0, maxLength) + "..."
 			: text;
+	};
+
+	const handleViewMovieDetails = () => {
+		navigate(`/movie/${review.movieId}`);
 	};
 
 	return (
@@ -18,17 +26,49 @@ const ReviewItem = ({ review, onDelete, onEdit }) => {
 				display: "flex",
 				alignItems: "center",
 				marginBottom: 2,
-				padding: "0 4px",
 			}}
 		>
+			<Box
+				sx={{
+					width: {
+						xs: "30%",
+						sm: "30%",
+						md: "20%",
+					},
+				}}
+			>
+				<img
+					src={`https://image.tmdb.org/t/p/w200${review.moviePoster}`}
+					alt={review.movieTitle}
+					style={{
+						width: "100%",
+						height: "auto",
+						objectFit: "cover",
+						marginRight: 16,
+					}}
+				/>
+			</Box>
+
 			<CardContent sx={{ flex: 1 }}>
 				<Typography
 					variant="h6"
 					gutterBottom
-					sx={{ display: "flex", alignItems: "center" }}
+					sx={{
+						display: "flex",
+						flexDirection: { xs: "column", sm: "row" },
+						fontSize: "1.1rem",
+						alignItems: { xs: "flex-start", sm: "center" },
+					}}
+					onClick={handleViewMovieDetails}
 				>
-					{review.movieTitle}{" "}
-					<Box sx={{ marginLeft: "10px", fontSize: "0.9rem" }}>
+					{review.movieTitle}
+					<Box
+						sx={{
+							marginLeft: { sm: "10px", xs: 0 },
+							fontSize: "0.9rem",
+							marginTop: { xs: "8px", sm: 0 },
+						}}
+					>
 						⭐{review.rating}
 					</Box>
 				</Typography>
@@ -50,11 +90,26 @@ const ReviewItem = ({ review, onDelete, onEdit }) => {
 					paddingRight: 1,
 				}}
 			>
+				{/* <IconButton color="inherit" onClick={handleViewMovieDetails}>
+					<MovieIcon
+						sx={{
+							fontSize: { xs: "20px", sm: "24px" },
+						}}
+					/>
+				</IconButton> */}
 				<IconButton color="secondary" onClick={() => onEdit(review.id)}>
-					<EditIcon />
+					<EditIcon
+						sx={{
+							fontSize: { xs: "20px", sm: "24px" },
+						}}
+					/>
 				</IconButton>
 				<IconButton color="primary" onClick={() => onDelete(review.id)}>
-					<DeleteIcon />
+					<DeleteIcon
+						sx={{
+							fontSize: { xs: "20px", sm: "24px" },
+						}}
+					/>
 				</IconButton>
 			</Box>
 		</Card>

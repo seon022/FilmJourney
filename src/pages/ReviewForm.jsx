@@ -26,7 +26,6 @@ function ReviewForm() {
 	const [dateError, setDateError] = useState(false);
 
 	useEffect(() => {
-		console.log("editReview changed:", editReview);
 		if (editReview) {
 			setReviewText(editReview.reviewText || "");
 			setRating(editReview.rating);
@@ -56,14 +55,14 @@ function ReviewForm() {
 			? {
 					id: editReview.movieId,
 					title: editReview.movieTitle,
-					poster_path: editReview.posterPath,
+					posterPath: editReview.moviePoster,
 			  }
 			: {
 					id: movie.id,
 					title: movie.title,
-					poster_path: movie.poster_path,
+					posterPath: movie.poster_path,
 			  };
-
+		console.log(movieData);
 		try {
 			if (editReview) {
 				await updateReview(

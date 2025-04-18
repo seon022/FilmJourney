@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
 	plugins: [react()],
+	base: "./",
 	resolve: {
 		alias: {
 			"@components": path.resolve(__dirname, "src/components"),
@@ -17,5 +18,8 @@ export default defineConfig({
 			"@api": path.resolve(__dirname, "src/api"),
 			"@store": path.resolve(__dirname, "src/store"),
 		},
+	},
+	optimizeDeps: {
+		include: ["@mui/material", "@emotion/react", "@emotion/styled"],
 	},
 });
