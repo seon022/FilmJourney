@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ReviewPage from "@pages/ReviewPage";
 
 import Navigation from "./components/Navigation";
-import Sample from "./pages/Sample";
 import Auth from "./pages/Auth";
 import FavoritesPage from "./pages/FavoritesPage";
 import Home from "./pages/Home";
