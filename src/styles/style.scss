@@ -121,7 +121,75 @@
     .title {
       font-size: 24px;
       font-weight: 800;
+      margin: 0 0 10px 0;
+    }
+    .rating {
+      display: flex;
+      gap: 10px;
+      p {
+        margin: 0;
+      }
+    }
+    .genre-list {
+      display: flex;
+      gap: 10px;
+      li {
+        background-color: #8a7163;
+        color: #ffffff;
+        font-weight: 600;
+        padding: 4px 16px;
+        border-radius: 16px;
+      }
+    }
+    .info-list {
+      display: flex;
+      gap: 40px;
+      text-align: center;
+      .cate {
+        font-size: 14px;
+        font-weight: 700;
+      }
+    }
+    .sec-title {
+      font-size: 20px;
+      font-weight: 800;
       margin: 0;
+    }
+  }
+  .review-list {
+    display: flex;
+    flex-direction: column;
+    .review-set {
+      display: flex;
+      gap: 20px;
+      &:not(:last-child) {
+        padding-bottom: 20px;
+      }
+      &:not(:first-child) {
+        padding-top: 20px;
+      }
+      .review-content {
+        width: 100%;
+      }
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .name,
+      .cont {
+        margin: 0;
+      }
+      .rating {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        p {
+          font-size: 14px;
+          font-weight: 600;
+          margin: 0;
+        }
+      }
     }
   }
 }
