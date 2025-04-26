@@ -48,10 +48,6 @@ export default function ButtonAppBar({ showSearch = false }) {
 								/>
 							</Search>
 						)}
-
-						{/* <Button color="secondary" sx={{ marginLeft: 2 }}>
-							Login
-						</Button> */}
 					</Box>
 				</Toolbar>
 			</AppBar>

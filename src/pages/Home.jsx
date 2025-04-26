@@ -2,9 +2,10 @@ import { useEffect, useState, useMemo } from "react"; // useMemo를 사용해서
 
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
+import ButtonAppBar from "@components/ButtonAppBar";
+import MovieCard from "@components/MovieCard";
+
 import { fetchMovieList, fetchGenres } from "../api/tmdbApi.js";
-import ButtonAppBar from "../components/ButtonAppBar.jsx";
-import MovieCard from "../components/MovieCard";
 
 function Home() {
 	const [loading, setLoading] = useState(true);
