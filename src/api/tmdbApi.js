@@ -52,11 +52,8 @@ export const searchMovies = async (query) => {
 		}
 		const json = await res.json();
 
-		console.log("📦 Raw search results:", json.results);
-
 		const filteredResults = (json.results || []).filter((movie) => {
 			if (movie.vote_count < 100) {
-				console.log(`Excluding movie with low vote count: ${movie.title}`);
 				return false;
 			}
 
