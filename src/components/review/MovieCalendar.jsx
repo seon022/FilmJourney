@@ -7,7 +7,6 @@ import { Box } from "@mui/system";
 
 import useMovieStore from "../../store/movieStore";
 
-
 const MovieCalendar = ({ onDateClick }) => {
 	const { reviews, fetchReviews } = useMovieStore();
 
@@ -32,7 +31,7 @@ const MovieCalendar = ({ onDateClick }) => {
 			title: firstEvent.movieTitle,
 			date: date,
 			extendedProps: {
-				poster: firstEvent.moviePoster,
+				poster: firstEvent.posterPath,
 				otherEvents: eventGroup.slice(1),
 			},
 		};

@@ -27,7 +27,7 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 	width: "100%",
 	"& .MuiInputBase-input": {
 		padding: theme.spacing(1.5, 2),
-		paddingLeft: theme.spacing(4),
+		paddingLeft: theme.spacing(3),
 	},
 }));
 
@@ -126,13 +126,25 @@ const SearchPage = () => {
 								))}
 							</Box>
 						) : (
-							<Box display="flex" justifyContent="center" alignItems="center">
+							<Box
+								display="flex"
+								justifyContent="center"
+								alignItems="center"
+								mt={8}
+							>
 								<Typography color="text.secondary">No Results.</Typography>
 							</Box>
 						)}
 					</Box>
 				) : (
-					<Typography variant="h6">No input yet.</Typography>
+					<Box
+						display="flex"
+						justifyContent="center"
+						alignItems="center"
+						mt={8}
+					>
+						<Typography variant="h8">Please enter a search term.</Typography>
+					</Box>
 				)}
 			</Container>
 		</div>

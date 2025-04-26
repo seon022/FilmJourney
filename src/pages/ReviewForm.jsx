@@ -40,6 +40,7 @@ function ReviewForm() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { user } = useUserStore.getState();
+		console.log(user);
 		const userId = user?.userId;
 		if (!userId) {
 			setError("User not logged in!");
@@ -55,14 +56,13 @@ function ReviewForm() {
 			? {
 					id: editReview.movieId,
 					title: editReview.movieTitle,
-					posterPath: editReview.moviePoster,
+					posterPath: editReview.posterPath,
 			  }
 			: {
 					id: movie.id,
 					title: movie.title,
 					posterPath: movie.poster_path,
 			  };
-		console.log(movieData);
 		try {
 			if (editReview) {
 				await updateReview(

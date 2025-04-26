@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Card, CardContent, Typography, IconButton, Box } from "@mui/material";
@@ -38,7 +37,7 @@ const ReviewItem = ({ review, onDelete, onEdit }) => {
 				}}
 			>
 				<img
-					src={`https://image.tmdb.org/t/p/w200${review.moviePoster}`}
+					src={`https://image.tmdb.org/t/p/w200${review.posterPath}`}
 					alt={review.movieTitle}
 					style={{
 						width: "100%",
