@@ -6,7 +6,6 @@ import {
 	doc,
 	deleteDoc,
 	updateDoc,
-	getFirestore,
 	collectionGroup,
 	query,
 	where,
@@ -15,7 +14,6 @@ import {
 import useUserStore from "@store/userStore";
 
 import { db } from "../firebase";
-import { getAuth } from "firebase/auth";
 
 const { user } = useUserStore.getState();
 const userId = user ? user.userId : null;
@@ -36,13 +34,7 @@ export const addReview = async (movieData, rating, reviewText, watchedDate) => {
 			reviewText,
 			createdAt: serverTimestamp(),
 		});
-		console.log(
-			"Successfully saved!",
-			movieData,
-			rating,
-			reviewText,
-			watchedDate
-		);
+		console.log("Successfully saved!");
 	} catch (error) {
 		console.error("Error in review save:", error);
 	}
@@ -70,13 +62,6 @@ export const updateReview = async (
 			updatedAt: serverTimestamp(),
 		});
 
-		console.log(
-			"Successfully updated!",
-			movieData,
-			rating,
-			reviewText,
-			watchedDate
-		);
 		console.log("Review updated successfully!");
 	} catch (error) {
 		console.error("Error updating review:", error);
@@ -110,8 +95,6 @@ export const deleteReviewFromFirebase = async (reviewId) => {
 
 export const getAllReviewsForMovie = async (movieId) => {
 	try {
-		const auth = getAuth();
-
 		const reviewsQuery = query(
 			collectionGroup(db, "reviews"),
 			where("movieId", "==", Number(movieId))

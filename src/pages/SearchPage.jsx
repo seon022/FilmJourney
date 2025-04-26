@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import debounce from "lodash.debounce";
 import { Container, Box, InputBase, Typography } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import { alpha, styled } from "@mui/material/styles";
+import debounce from "lodash.debounce";
+import { useNavigate } from "react-router-dom";
+
 import { searchMovies } from "../api/tmdbApi";
 import SearchMovieCard from "../components/SearchMovieCard";
 

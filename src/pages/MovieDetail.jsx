@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import useUserStore from "../store/userStore";
+
 // API, components, and store
+// MUI
+import AddIcon from "@mui/icons-material/Add";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
+import Fab from "@mui/material/Fab";
+import { useParams, useNavigate } from "react-router-dom";
+
+import { getAllReviewsForMovie } from "../api/reviewService.js";
 import {
   fetchMovieDetail,
   fetchCast,
@@ -9,13 +17,7 @@ import {
 } from "../api/tmdbApi.js";
 import MovieCard from "../components/MovieCard";
 import useMovieStore from "../store/movieStore";
-import { getAllReviewsForMovie } from "../api/reviewService.js";
-// MUI
-import AddIcon from "@mui/icons-material/Add";
-import StarRateIcon from "@mui/icons-material/StarRate";
-import Fab from "@mui/material/Fab";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
+import useUserStore from "../store/userStore";
 
 function MovieDetail() {
   const [loading, setLoading] = useState(true);

@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
 	Card,
 	CardActionArea,
@@ -6,8 +7,8 @@ import {
 	CardContent,
 	Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function SearchMovieCard({ id, poster, title, releaseDate }) {
 	return (
