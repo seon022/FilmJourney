@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Container, Box, InputBase, Typography, Paper } from "@mui/material";
+import React, { useState, useCallback, useEffect } from "react";
+import debounce from "lodash.debounce";
+import { Container, Box, InputBase, Typography } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import { searchMovies } from "../api/tmdbApi";
+import SearchMovieCard from "../components/SearchMovieCard";
 
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
@@ -19,33 +21,43 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 	width: "100%",
 	"& .MuiInputBase-input": {
 		padding: theme.spacing(1.5, 2),
-		width: "100%",
 	},
 }));
 
 const SearchPage = () => {
 	const [query, setQuery] = useState("");
 	const [movies, setMovies] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
 
-	const handleSearch = async (e) => {
-		const searchParam = e.target.value;
-		setQuery(searchParam);
-		if (searchParam.trim() === "") {
-			setMovies([]);
-		}
-		setLoading(true);
-		setError(null);
-		try {
-			const response = await searchMovies(searchParam);
-			setMovies(response);
-		} catch (err) {
-			setError(err);
-		} finally {
-			setLoading(false);
-		}
+	const debouncedSearch = useCallback(
+		debounce(async (searchParam) => {
+			if (searchParam.trim() === "") {
+				setMovies([]);
+				return;
+			}
+			try {
+				const response = await searchMovies(searchParam);
+				setMovies(response);
+			} catch (error) {
+				console.error(error);
+			}
+		}, 300),
+		[]
+	);
+
+	const handleInputChange = (e) => {
+		const value = e.target.value;
+		setQuery(value);
+		debouncedSearch(value);
 	};
+	const handleInputBlur = () => {
+		debouncedSearch.flush();
+	};
+
+	useEffect(() => {
+		return () => {
+			debouncedSearch.cancel();
+		};
+	}, [debouncedSearch]);
 
 	return (
 		<Container>
@@ -55,36 +67,36 @@ const SearchPage = () => {
 						placeholder="Search movies..."
 						inputProps={{ "aria-label": "search" }}
 						value={query}
-						onChange={handleSearch}
+						onChange={handleInputChange}
+						onBlur={handleInputBlur}
 					/>
 				</Search>
 			</Box>
+
 			{query ? (
 				<Box>
 					<Typography variant="h6" gutterBottom>
 						Search Results for: <strong>{query}</strong>
 					</Typography>
 
-					{movies ? (
-						<Box display="grid" gap={2}>
-							{movies.map((movie) => {
-								return (
-									<Paper key={movie.id} sx={{ padding: 2 }}>
-										<img
-											src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-											alt={movie.title}
-											className="poster"
-										/>
-										<Typography variant="body2" color="text.secondary">
-											{movie.title}
-											{movie.release_date}
-										</Typography>
-									</Paper>
-								);
-							})}
+					{movies.length > 0 ? (
+						<Box
+							display="grid"
+							gridTemplateColumns={{ xs: "1fr", sm: "1fr 1fr" }}
+							gap={2}
+						>
+							{movies.map((movie) => (
+								<SearchMovieCard
+									key={movie.id}
+									id={movie.id}
+									poster={movie.poster_path}
+									title={movie.title}
+									releaseDate={movie.release_date}
+								/>
+							))}
 						</Box>
 					) : (
-						<Typography color="text.secondary">No Result.</Typography>
+						<Typography color="text.secondary">No Results.</Typography>
 					)}
 				</Box>
 			) : (

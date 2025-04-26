@@ -42,7 +42,7 @@ export const searchMovies = async (query) => {
 
 	const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
 		query
-	)}&include_adult=false&language=en-US&page=1`;
+	)}&include_adult=false&language=ko-KR&page=1`;
 	const options = { method: "GET", headers: { accept: "application/json" } };
 
 	try {
@@ -51,7 +51,19 @@ export const searchMovies = async (query) => {
 			throw new Error(`HTTP error! Status : ${res.status}`);
 		}
 		const json = await res.json();
-		return json.results || [];
+
+		console.log("📦 Raw search results:", json.results);
+
+		const filteredResults = (json.results || []).filter((movie) => {
+			if (movie.vote_count < 100) {
+				console.log(`Excluding movie with low vote count: ${movie.title}`);
+				return false;
+			}
+
+			return !movie.adult && movie.poster_path;
+		});
+
+		return filteredResults;
 	} catch (err) {
 		console.error("Failed to fetch movies:", err);
 		return [];
