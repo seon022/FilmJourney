@@ -26,7 +26,7 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-export default function ButtonAppBar({ showSearch = false }) {
+export default function ButtonAppbar({ showSearch = false }) {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">

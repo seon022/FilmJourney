@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react"; // useMemo를 사용해서
 
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-import ButtonAppBar from "@components/ButtonAppBar";
+import ButtonAppbar from "@components/ButtonAppbar";
 import MovieCard from "@components/MovieCard";
 
 import { fetchMovieList, fetchGenres } from "../api/tmdbApi.js";
@@ -65,7 +65,7 @@ function Home() {
 
 	return (
 		<div>
-			<ButtonAppBar />
+			<ButtonAppbar />
 			{loading ? (
 				<h1>Loading...</h1>
 			) : (
