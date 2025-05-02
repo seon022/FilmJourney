@@ -26,16 +26,17 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-export default function ButtonAppBar({ showSearch = false }) {
+export default function ButtonAppbar({ showSearch = false }) {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
 				<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
 					<Box
 						component="img"
-						src="/public/FilmJourney_white.svg"
+						src="/FilmJourney_white.svg"
 						alt="logo"
 						sx={{ height: 56 }}
+						onClick={() => (window.location.href = "/")}
 					/>
 
 					<Box sx={{ display: "flex", alignItems: "center" }}>
@@ -47,10 +48,6 @@ export default function ButtonAppBar({ showSearch = false }) {
 								/>
 							</Search>
 						)}
-
-						{/* <Button color="secondary" sx={{ marginLeft: 2 }}>
-							Login
-						</Button> */}
 					</Box>
 				</Toolbar>
 			</AppBar>
