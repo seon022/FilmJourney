@@ -6,9 +6,7 @@ import {
 	doc,
 	deleteDoc,
 	updateDoc,
-	collectionGroup,
-	query,
-	where,
+	getFirestore
 } from "firebase/firestore";
 
 import useUserStore from "@store/userStore";
@@ -61,7 +59,6 @@ export const updateReview = async (
 			reviewText,
 			updatedAt: serverTimestamp(),
 		});
-
 		console.log("Review updated successfully!");
 	} catch (error) {
 		console.error("Error updating review:", error);
@@ -80,6 +77,15 @@ export const getReviews = async () => {
 	} catch (error) {
 		console.error("Error fetching reviews:", error);
 		return [];
+	}
+};
+export const getReviewsCount = async () => {
+	try {
+		const reviews = await getReviews();
+		return reviews.length;
+	} catch (error) {
+		console.error("Error fetching reviews count:", error);
+		return 0;
 	}
 };
 
