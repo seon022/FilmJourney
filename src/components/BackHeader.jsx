@@ -30,7 +30,6 @@ const BackHeader = ({ text }) => {
 					{text}
 				</Typography>
 
-				{/* Placeholder to balance layout */}
 				<IconButton edge="end" sx={{ visibility: "hidden" }}>
 					<ArrowBackIcon />
 				</IconButton>

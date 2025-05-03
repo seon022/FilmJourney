@@ -6,16 +6,12 @@ import {
 	doc,
 	deleteDoc,
 	updateDoc,
-	getFirestore,
-	collectionGroup,
-	query,
-	where,
+	getFirestore
 } from "firebase/firestore";
 
 import useUserStore from "@store/userStore";
 
 import { db } from "../firebase";
-import { getAuth } from "firebase/auth";
 
 const { user } = useUserStore.getState();
 const userId = user ? user.userId : null;
@@ -26,22 +22,17 @@ export const addReview = async (movieData, rating, reviewText, watchedDate) => {
 	try {
 		const reviewRef = collection(db, "users", userId, "reviews");
 		await addDoc(reviewRef, {
+			userName: user.displayName,
 			movieId: movieData.id,
 			movieTitle: movieData.title,
-			moviePoster: movieData.poster_path || "",
+			posterPath: movieData.posterPath || "",
 			reviewDate: new Date().toISOString().split("T")[0],
 			watchedDate: watchedDate || null,
 			rating,
 			reviewText,
 			createdAt: serverTimestamp(),
 		});
-		console.log(
-			"Successfully saved!",
-			movieData,
-			rating,
-			reviewText,
-			watchedDate
-		);
+		console.log("Successfully saved!");
 	} catch (error) {
 		console.error("Error in review save:", error);
 	}
@@ -59,9 +50,10 @@ export const updateReview = async (
 	try {
 		const reviewDocRef = doc(db, "users", userId, "reviews", reviewId);
 		await updateDoc(reviewDocRef, {
+			userName: user.displayName,
 			movieId: movieData.id,
 			movieTitle: movieData.title,
-			moviePoster: movieData.poster_path || "",
+			posterPath: movieData.posterPath || "",
 			watchedDate: watchedDate || null,
 			rating,
 			reviewText,
@@ -109,8 +101,6 @@ export const deleteReviewFromFirebase = async (reviewId) => {
 
 export const getAllReviewsForMovie = async (movieId) => {
 	try {
-		const auth = getAuth();
-
 		const reviewsQuery = query(
 			collectionGroup(db, "reviews"),
 			where("movieId", "==", Number(movieId))

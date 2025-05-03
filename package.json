@@ -23,6 +23,8 @@
 		"@mui/x-date-pickers": "^7.28.0",
 		"dayjs": "^1.11.13",
 		"firebase": "^11.4.0",
+		"lodash": "^4.17.21",
+		"lodash.debounce": "^4.0.8",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-router-dom": "6",
