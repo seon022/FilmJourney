@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 import { Container, Box, TextField, Typography, Button } from "@mui/material";
 import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import BackHeader from "../components/BackHeader";
 import { auth } from "../firebase";
 import useUserStore from "../store/userStore";
-import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
 	const { user } = useUserStore();

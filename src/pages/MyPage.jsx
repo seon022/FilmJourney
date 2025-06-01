@@ -12,10 +12,9 @@ import {
 	CardContent,
 	Button,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Navigate } from "react-router-dom";
 
 import { getReviewsCount } from "../api/reviewService";
-import { Navigate } from "react-router-dom";
 import useUserStore from "../store/userStore";
 
 function MyPage() {

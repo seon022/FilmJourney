@@ -6,7 +6,9 @@ import {
 	doc,
 	deleteDoc,
 	updateDoc,
-	getFirestore
+	query,
+	collectionGroup,
+	where,
 } from "firebase/firestore";
 
 import useUserStore from "@store/userStore";
