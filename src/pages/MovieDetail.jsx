@@ -1,23 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // API, components, and store
 // MUI
-import AddIcon from "@mui/icons-material/Add";
-import StarRateIcon from "@mui/icons-material/StarRate";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
-import Fab from "@mui/material/Fab";
-import { useParams, useNavigate } from "react-router-dom";
+import AddIcon from '@mui/icons-material/Add';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import Fab from '@mui/material/Fab';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { getAllReviewsForMovie } from "../api/reviewService.js";
-import {
-  fetchMovieDetail,
-  fetchCast,
-  fetchSimilarMovies,
-} from "../api/tmdbApi.js";
-import MovieCard from "../components/MovieCard";
-import useMovieStore from "../store/movieStore";
-import useUserStore from "../store/userStore";
+import { getAllReviewsForMovie } from '../api/reviewService.js';
+import { fetchMovieDetail, fetchCast, fetchSimilarMovies } from '../api/tmdbApi.js';
+import MovieCard from '../components/MovieCard';
+import useMovieStore from '../store/movieStore';
+import useUserStore from '../store/userStore';
 
 function MovieDetail() {
   const [loading, setLoading] = useState(true);
@@ -62,7 +58,7 @@ function MovieDetail() {
   }, []);
 
   useEffect(() => {
-    console.log("user", user);
+    console.log('user', user);
     if (!user) return; // 아직 로그인 정보 없음
 
     const fetchReviews = async () => {
@@ -71,7 +67,7 @@ function MovieDetail() {
     };
 
     fetchReviews();
-    console.log("reviews", reviews);
+    console.log('reviews', reviews);
   }, [user, id]);
 
   return (
@@ -116,14 +112,14 @@ function MovieDetail() {
                 {cast.cast
                   .slice(0, 5)
                   .map((c) => c.name)
-                  .join(", ")}
+                  .join(', ')}
               </p>
             </div>
             <div>
               <p className="sec-title">Director</p>
               <ul>
                 {cast.crew
-                  .filter((c) => c.job === "Director")
+                  .filter((c) => c.job === 'Director')
                   .map((c) => (
                     <li key={c.id}>{c.name}</li>
                   ))}
@@ -170,9 +166,9 @@ function MovieDetail() {
             color="primary"
             aria-label="add"
             sx={{
-              position: "fixed",
+              position: 'fixed',
               bottom: 90,
-              right: "max(calc((100vw - 760px) / 2 + 20px), 20px)",
+              right: 'max(calc((100vw - 760px) / 2 + 20px), 20px)',
               zIndex: 1000,
             }}
             onClick={handleGoToReviewForm}

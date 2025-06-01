@@ -1,16 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import ReviewPage from "@pages/ReviewPage";
+import ReviewPage from '@pages/ReviewPage';
 
-import Navigation from "./components/Navigation";
-import Auth from "./pages/Auth";
-import EditProfile from "./pages/EditProfile";
-import FavoritesPage from "./pages/FavoritesPage";
-import Home from "./pages/Home";
-import MovieDetail from "./pages/MovieDetail";
-import MyPage from "./pages/MyPage";
-import ReviewForm from "./pages/ReviewForm";
-import SearchPage from "./pages/SearchPage";
+import Navigation from './components/Navigation';
+import Auth from './pages/Auth';
+import EditProfile from './pages/EditProfile';
+import FavoritesPage from './pages/FavoritesPage';
+import Home from './pages/Home';
+import MovieDetail from './pages/MovieDetail';
+import MyPage from './pages/MyPage';
+import ReviewForm from './pages/ReviewForm';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   return (
