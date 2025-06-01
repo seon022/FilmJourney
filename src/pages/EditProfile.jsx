@@ -1,41 +1,71 @@
-import { useEffect } from "react";
-import { Container, Box, TextField, Typography, Button } from "@mui/material";
+import { useEffect, useState } from 'react';
 
-import BackHeader from "../components/BackHeader";
-import useUserStore from "../store/userStore";
+import { Container, Box, TextField, Typography, Button } from '@mui/material';
+import { updateProfile } from 'firebase/auth';
+
+import BackHeader from '../components/BackHeader';
+import { auth } from '../firebase';
+import useUserStore from '../store/userStore';
 
 const EditProfile = () => {
   const { user } = useUserStore();
-  useEffect(() => {});
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    if (user?.displayName) {
+      setUsername(user.displayName.split(' ')[0]);
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleUpdateUsername = async () => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: username,
+      });
+      alert('Successfully updated your name!');
+    } catch (error) {
+      console.error('failed to update username:', error);
+      alert('failed to update username');
+    }
+  };
 
   return (
     <div>
-      <BackHeader text="Edit Profile" />
+      <BackHeader text='Edit Profile' />
       <Container
-        maxWidth="sm"
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        maxWidth='sm'
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
-        <Typography variant="p" mb={1}>
+        <Typography variant='p' mb={1}>
           USERNAME
         </Typography>
         <Box
-          component="form"
-          sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+          component='form'
+          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
           noValidate
-          autoComplete="off"
+          autoComplete='off'
         >
           <TextField
-            id="updateUsername"
-            value={user.displayName.split(" ")[0]}
+            id='updateUsername'
+            value={username}
+            onChange={handleChange}
           />
         </Box>
         <Box
-          component="form"
-          sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+          component='form'
+          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
           noValidate
-          autoComplete="off"
+          autoComplete='off'
         >
-          <Button variant="contained" sx={{ minWidth: 150 }}>
+          <Button
+            variant='contained'
+            sx={{ minWidth: 150 }}
+            onClick={handleUpdateUsername}
+          >
             Update
           </Button>
         </Box>
