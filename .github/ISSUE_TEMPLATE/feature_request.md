@@ -1,10 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[Feat]"
+title: '[Feat]'
 labels: ''
 assignees: ''
-
 ---
 
 ## What feature would you like to add?
@@ -13,12 +12,12 @@ assignees: ''
 
 ## Task Details
 
-- [ ] TODO  
-- [ ] TODO  
-- [ ] TODO  
+- [ ] TODO
+- [ ] TODO
+- [ ] TODO
 
 ## Reference Materials (Optional)
 
 > Add any reference materials or links that might be helpful.
-**Additional context**
-Add any other context or screenshots about the feature request here.
+> **Additional context**
+> Add any other context or screenshots about the feature request here.

@@ -1,10 +1,9 @@
 ---
 name: Etc issue template
 about: Describe this issue template's purpose here.
-title: "[Etc]"
+title: '[Etc]'
 labels: ''
 assignees: ''
-
 ---
 
 ## What feature would you like to fix?
@@ -13,6 +12,6 @@ assignees: ''
 
 ## Task Details
 
-- [ ] TODO  
-- [ ] TODO  
+- [ ] TODO
+- [ ] TODO
 - [ ] TODO
