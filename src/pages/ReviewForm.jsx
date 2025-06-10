@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { addReview, updateReview } from '@api/reviewService';
 import BackHeader from '@components/BackHeader';
@@ -25,6 +25,7 @@ function ReviewForm() {
   const [error, setError] = useState('');
   const [dateError, setDateError] = useState(false);
 
+  const { user } = useUserStore();
   useEffect(() => {
     if (editReview) {
       setReviewText(editReview.reviewText || '');
@@ -36,6 +37,10 @@ function ReviewForm() {
       setWatchedDate(dayjs());
     }
   }, [editReview]);
+
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
