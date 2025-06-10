@@ -3,7 +3,7 @@ import { persist, devtools } from 'zustand/middleware';
 
 import { getReviews, deleteReviewFromFirebase } from '../api/reviewService';
 
-export const useMovieStore = create(
+const useMovieStore = create(
   persist(
     devtools((set) => ({
       movie: null,

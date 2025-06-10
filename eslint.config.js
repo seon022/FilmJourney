@@ -47,6 +47,7 @@ export default [
       'import/newline-after-import': ['error', { count: 1 }],
       'import/no-duplicates': 'error',
       'import/no-unresolved': 'error',
+      'no-undef': 'error',
     },
     settings: {
       'import/resolver': {
