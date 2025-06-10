@@ -1,6 +1,7 @@
 import StarRateIcon from '@mui/icons-material/StarRate';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
 import Bookmark from './Bookmark';
 
 function MovieCard({ id, poster, title, aveRate }) {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { red } from '@mui/material/colors';
 
 const Bookmark = () => {
