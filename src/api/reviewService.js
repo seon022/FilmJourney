@@ -11,14 +11,12 @@ import {
   where,
 } from 'firebase/firestore';
 
-import useUserStore from '@store/userStore';
-
 import { db } from '../firebase';
-
-const { user } = useUserStore.getState();
-const userId = user ? user.userId : null;
+import useUserStore from '../store/userStore';
 
 export const addReview = async (movieData, rating, reviewText, watchedDate) => {
+  const { user } = useUserStore.getState();
+  const userId = user ? user.userId : null;
   if (!userId) throw new Error('User is not logged in.');
 
   try {
@@ -41,6 +39,8 @@ export const addReview = async (movieData, rating, reviewText, watchedDate) => {
 };
 
 export const updateReview = async (reviewId, movieData, rating, reviewText, watchedDate) => {
+  const { user } = useUserStore.getState();
+  const userId = user ? user.userId : null;
   if (!userId) throw new Error('User is not logged in.');
 
   try {
@@ -62,6 +62,10 @@ export const updateReview = async (reviewId, movieData, rating, reviewText, watc
 };
 
 export const getReviews = async () => {
+  const { user } = useUserStore.getState();
+  const userId = user ? user.userId : null;
+  if (!userId) throw new Error('User is not logged in.');
+
   try {
     const reviewRef = collection(db, 'users', userId, 'reviews');
     const snapshot = await getDocs(reviewRef);
@@ -76,16 +80,25 @@ export const getReviews = async () => {
   }
 };
 export const getReviewsCount = async () => {
+  const { user } = useUserStore.getState();
+  const userId = user ? user.userId : null;
+  if (!userId) {
+    throw new Error('fail to get User');
+  }
+
   try {
     const reviews = await getReviews();
     return reviews.length;
   } catch (error) {
     console.error('Error fetching reviews count:', error);
-    return 0;
   }
 };
 
 export const deleteReviewFromFirebase = async (reviewId) => {
+  const { user } = useUserStore.getState();
+  const userId = user ? user.userId : null;
+  if (!reviewId) throw new Error('Invalid reviewId');
+
   try {
     const reviewDoc = doc(db, 'users', userId, 'reviews', reviewId);
     await deleteDoc(reviewDoc);
@@ -96,6 +109,8 @@ export const deleteReviewFromFirebase = async (reviewId) => {
 };
 
 export const getAllReviewsForMovie = async (movieId) => {
+  if (!movieId) throw new Error('Invalid movieId');
+
   try {
     const reviewsQuery = query(
       collectionGroup(db, 'reviews'),
