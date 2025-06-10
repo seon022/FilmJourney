@@ -71,6 +71,14 @@
           text-underline-offset: 4px;
         }
       }
+      .poster-container {
+        position: relative;
+        .favorite-icons {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+      }
       .poster {
         width: 100%;
         min-width: 150px;
