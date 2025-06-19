@@ -4,9 +4,13 @@ import { Container, Card, CardMedia, CardContent, Typography } from '@mui/materi
 import { collection, getDocs } from 'firebase/firestore';
 
 import BackHeader from '../components/BackHeader';
+import MovieCard from '../components/MovieCard';
 import { db } from '../firebase';
+import useUserStore from '../store/userStore';
 
 const FavoritesPage = ({ userId }) => {
+  const { user } = useUserStore.getState();
+  // const userId = user ? user.userId : null;
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -31,12 +35,13 @@ const FavoritesPage = ({ userId }) => {
       <BackHeader text="My Favorite" />
       <Container>
         {favorites.map((fav) => (
-          <Card key={fav.id}>
-            <CardMedia component="img" height="300" image={fav.moviePoster} alt={fav.movieTitle} />
-            <CardContent>
-              <Typography variant="h6">{fav.movieTitle}</Typography>
-            </CardContent>
-          </Card>
+          <MovieCard
+            key={fav.id}
+            id={fav.id}
+            poster={fav.moviePoster}
+            title={fav.movieTitle}
+            userId={user ? user.uid : null}
+          />
         ))}
       </Container>
     </div>

@@ -21,10 +21,14 @@ function MovieCard({ id, poster, title, aveRate, userId }) {
           <img src={`https://image.tmdb.org/t/p/w200${poster}`} alt={title} className="poster" />
         </div>
         <p className="title">{title}</p>
-        <div className="aveRate">
-          <StarRateIcon fontSize="small" color="rating"></StarRateIcon>
-          <p>{aveRate}</p>
-        </div>
+        {aveRate !== undefined ? (
+          <div className="aveRate">
+            <StarRateIcon fontSize="small" color="rating"></StarRateIcon>
+            <p>{aveRate}</p>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </Link>
   );
