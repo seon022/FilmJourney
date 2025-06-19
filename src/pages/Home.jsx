@@ -102,6 +102,7 @@ function Home() {
                   poster={movie.poster_path}
                   title={movie.title}
                   aveRate={movie.vote_average.toFixed(1)}
+                  userId={user ? user.uid : null}
                 />
               ))}
             </div>
@@ -116,6 +117,7 @@ function Home() {
                   poster={movie.poster_path}
                   title={movie.title}
                   aveRate={movie.vote_average.toFixed(1)}
+                  userId={user ? user.uid : null}
                 />
               ))}
             </div>

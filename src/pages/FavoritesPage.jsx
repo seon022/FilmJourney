@@ -8,9 +8,9 @@ import MovieCard from '../components/MovieCard';
 import { db } from '../firebase';
 import useUserStore from '../store/userStore';
 
-const FavoritesPage = ({ userId }) => {
-  const { user } = useUserStore.getState();
-  // const userId = user ? user.userId : null;
+const FavoritesPage = () => {
+  const { user } = useUserStore();
+  const userId = user ? user.userId : null;
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -24,8 +24,6 @@ const FavoritesPage = ({ userId }) => {
         ...doc.data(),
       }));
       setFavorites(favList);
-      console.log('userId:', userId);
-      console.log('favorites loaded:', favList);
     }
 
     fetchFavorites();
@@ -40,7 +38,7 @@ const FavoritesPage = ({ userId }) => {
             id={fav.id}
             poster={fav.moviePoster}
             title={fav.movieTitle}
-            userId={user ? user.uid : null}
+            userId={userId}
           />
         ))}
       </Container>
