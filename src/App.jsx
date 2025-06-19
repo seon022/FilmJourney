@@ -12,6 +12,8 @@ import MyPage from './pages/MyPage';
 import ReviewForm from './pages/ReviewForm';
 import SearchPage from './pages/SearchPage';
 
+const userId = 'bHvYf73rObWcSGSYpidqi65prWG3';
+
 function App() {
   return (
     <Router>
@@ -21,7 +23,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetail />} />
         <Route path="/review/:id" element={<ReviewForm />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/favorites" element={<FavoritesPage userId={userId} />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/review" element={<ReviewPage />} />

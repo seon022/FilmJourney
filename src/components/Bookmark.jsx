@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
-import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
-
-import { db } from '../firebase'; // firebase 초기화한 파일
-
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { red } from '@mui/material/colors';
+import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
+
+import { db } from '../firebase';
 
 const Bookmark = ({ userId, movie }) => {
   const [bookmarked, setBookmarked] = useState(false);
 
-  useEffect(
-    (userId, movie) => {
-      if (!userId || !movie || !movie.id) return;
-      async function checkFavorite() {
-        const favRef = doc(db, 'users', userId, 'favorites', movie.id.toString());
-        const favSnap = await getDoc(favRef);
-        setBookmarked(favSnap.exists());
-      }
+  useEffect(() => {
+    if (!userId || !movie || !movie.id) return;
 
-      checkFavorite();
-    },
-    [userId, movie.id]
-  );
+    async function checkFavorite() {
+      const favRef = doc(db, 'users', userId, 'favorites', movie.id.toString());
+      const favSnap = await getDoc(favRef);
+      setBookmarked(favSnap.exists());
+    }
+
+    checkFavorite();
+  }, [userId, movie?.id]);
 
   const handleToggle = async (e) => {
     e.preventDefault();
@@ -47,8 +44,9 @@ const Bookmark = ({ userId, movie }) => {
       setBookmarked(true);
     }
   };
+
   if (!movie || !movie.id) {
-    return null; // 또는 placeholder
+    return null;
   }
 
   return (
