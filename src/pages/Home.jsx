@@ -1,13 +1,16 @@
 import { useEffect, useState, useMemo } from 'react'; // useMemo를 사용해서 불필요한 계산을 줄이고 상태 변경을 반영
 
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import ButtonAppbar from '@components/ButtonAppbar';
 import MovieCard from '@components/MovieCard';
 
 import { fetchMovieList, fetchGenres } from '../api/tmdbApi.js';
+import { auth } from '../firebase';
 
 function Home() {
+  const [user] = useAuthState(auth);
   const [loading, setLoading] = useState(true);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [topRated, setTopRated] = useState([]);
@@ -83,6 +86,7 @@ function Home() {
                   poster={movie.poster_path}
                   title={movie.title}
                   aveRate={movie.vote_average.toFixed(1)}
+                  userId={user ? user.uid : null}
                 />
               ))}
             </div>

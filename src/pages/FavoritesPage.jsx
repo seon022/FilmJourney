@@ -5,9 +5,7 @@ import UnderConstruction from '../components/UnderConstruction';
 const FavoritesPage = () => {
   return (
     <div>
-      <Container>
-        <UnderConstruction />
-      </Container>
+      <Container></Container>
     </div>
   );
 };
