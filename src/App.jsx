@@ -8,7 +8,7 @@ import EditProfile from './pages/EditProfile';
 import FavoritesPage from './pages/FavoritesPage';
 import Home from './pages/Home';
 import MovieDetail from './pages/MovieDetail';
-import MyPage from './pages/MyPage';
+import Mypage from './pages/Mypage/MyPage';
 import ReviewForm from './pages/ReviewForm';
 import SearchPage from './pages/SearchPage';
 
@@ -22,7 +22,7 @@ function App() {
         <Route path="/review/:id" element={<ReviewForm />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage" element={<Mypage />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/review" element={<ReviewPage />} />
       </Routes>
